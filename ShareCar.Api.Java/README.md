@@ -4,11 +4,11 @@
 
 <ul>
 <li>module "api" knows noone</li>
-<li>module "service" knows about "api"</li>
-<li>module "app" knows about "service"</li>
+<li>module "service" knows about "api" and "repository"</li>
+<li>module "repository" knows noone"</li>
 </ul>
 
-Module "<i>app</i>" is suppose to be main executable jar, so it contains spring boot application though.
+Module "<i>service</i>" is suppose to be main executable jar, so it contains spring boot application though.
 
 Modules "talk" with each other through <i>interfaces</i>. Such ones are placed under "<i>/spi/</i>" package.
 
