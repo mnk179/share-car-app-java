@@ -1,3 +1,3 @@
 module commons {
-    exports com.cognizant.sharecar.common.spi;
+    exports com.cognizant.sharecar.common.spi.model;
 }
