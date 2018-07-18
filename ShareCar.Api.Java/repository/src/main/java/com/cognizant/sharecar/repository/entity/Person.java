@@ -44,4 +44,13 @@ public class Person {
     public void setSecondName(String secondName) {
         this.secondName = secondName;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "personId=" + personId +
+                ", name='" + name + '\'' +
+                ", secondName='" + secondName + '\'' +
+                '}';
+    }
 }

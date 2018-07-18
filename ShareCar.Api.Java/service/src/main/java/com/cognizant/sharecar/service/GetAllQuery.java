@@ -1,5 +1,7 @@
 package com.cognizant.sharecar.service;
 
+import com.cognizant.sharecar.common.spi.model.TaskStatus;
+
 public class GetAllQuery {
 
     private TaskStatus status;

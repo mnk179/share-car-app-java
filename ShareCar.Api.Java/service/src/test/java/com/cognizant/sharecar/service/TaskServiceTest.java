@@ -1,5 +1,6 @@
 package com.cognizant.sharecar.service;
 
+import com.cognizant.sharecar.common.spi.model.TaskStatus;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -5,4 +5,5 @@ module service {
     requires spring.boot;
     requires spring.beans;
     requires spring.context;
+    requires commons;
 }

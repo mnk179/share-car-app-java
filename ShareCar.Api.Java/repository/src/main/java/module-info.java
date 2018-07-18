@@ -9,4 +9,5 @@ module repository {
     requires spring.beans;
     requires spring.data.jpa;
     requires java.persistence;
+    requires commons;
 }
