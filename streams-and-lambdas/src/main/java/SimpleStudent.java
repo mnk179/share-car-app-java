@@ -8,12 +8,12 @@ public class SimpleStudent {
     private long studentId;
     private String nameAndSurname;
     private LocalDate graduationDate;
-    private Map<String, Integer> grades = new HashMap<>();
+    private Map<Student.Subject, Integer> grades = new HashMap<>();
 
     public SimpleStudent() {
     }
 
-    public SimpleStudent(long studentId, String nameAndSurname, LocalDate graduationDate, Map<String, Integer> grades) {
+    public SimpleStudent(long studentId, String nameAndSurname, LocalDate graduationDate, Map<Student.Subject, Integer> grades) {
         this.studentId = studentId;
         this.nameAndSurname = nameAndSurname;
         this.graduationDate = graduationDate;
@@ -44,11 +44,11 @@ public class SimpleStudent {
         this.graduationDate = graduationDate;
     }
 
-    public Map<String, Integer> getGrades() {
+    public Map<Student.Subject, Integer> getGrades() {
         return grades;
     }
 
-    public void setGrades(Map<String, Integer> grades) {
+    public void setGrades(Map<Student.Subject, Integer> grades) {
         this.grades = grades;
     }
 

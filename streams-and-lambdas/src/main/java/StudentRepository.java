@@ -47,7 +47,7 @@ public class StudentRepository {
         }
     }
 
-    public List<Student> getPersons() {
+    public List<Student> getStudents() {
         return new ArrayList<>(people);
     }
 }
