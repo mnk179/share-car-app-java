@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface TaskService {
 
-    List<Task> getAll(GetAllQuery getAllQuery);
+    List<TaskView> getAll(GetAllQuery getAllQuery);
 
-    void add(Task task);
+    void add(TaskView task);
 
-    void delete(Task task);
+    void delete(TaskView task);
 }

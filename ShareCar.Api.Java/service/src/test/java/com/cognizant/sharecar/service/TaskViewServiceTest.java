@@ -9,7 +9,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 
-public class TaskServiceTest {
+public class TaskViewServiceTest {
 
     private TaskService taskService;
 
@@ -20,7 +20,7 @@ public class TaskServiceTest {
 
     @Test
     public void getAll_NoTasksWereAdded_ReturnEmptyTaskList() {
-        List<Task> tasks = taskService.getAll(new GetAllQuery());
+        List<TaskView> tasks = taskService.getAll(new GetAllQuery());
 
         assertThat(tasks, hasSize(0));
     }
@@ -29,7 +29,7 @@ public class TaskServiceTest {
     public void getAll_OneTaskWasAdded_ReturnOneTask() {
         addTask(TaskStatus.DONE);
 
-        List<Task> tasks = taskService.getAll(new GetAllQuery());
+        List<TaskView> tasks = taskService.getAll(new GetAllQuery());
 
         assertThat(tasks, hasSize(1));
     }
@@ -37,7 +37,7 @@ public class TaskServiceTest {
     @Test
     public void getAll_StatusIsDone_ReturnEmpty() {
         addTask(TaskStatus.OPEN);
-        List<Task> tasks = taskService.getAll(new GetAllQuery(TaskStatus.DONE));
+        List<TaskView> tasks = taskService.getAll(new GetAllQuery(TaskStatus.DONE));
 
         assertThat(tasks, hasSize(0));
     }
@@ -45,7 +45,7 @@ public class TaskServiceTest {
     @Test
     public void getAll_TwoTasksWereAddedAndStatusIsDone_OneIsReturned() {
         addTask(TaskStatus.DONE);
-        List<Task> tasks = taskService.getAll(new GetAllQuery(TaskStatus.DONE));
+        List<TaskView> tasks = taskService.getAll(new GetAllQuery(TaskStatus.DONE));
 
         assertThat(tasks, hasSize(1));
     }
@@ -54,7 +54,7 @@ public class TaskServiceTest {
     public void getAll_TwoTasksWereAddedAndStatusIsAbsent_ReturnTwoTasks() {
         addTask(TaskStatus.OPEN);
         addTask(TaskStatus.DONE);
-        List<Task> tasks = taskService.getAll(new GetAllQuery());
+        List<TaskView> tasks = taskService.getAll(new GetAllQuery());
 
         assertThat(tasks, hasSize(2));
     }
@@ -64,18 +64,18 @@ public class TaskServiceTest {
         addTask(TaskStatus.DONE);
         addTask(TaskStatus.OPEN);
         addTask(TaskStatus.IN_PROGRESS);
-        List<Task> tasks = taskService.getAll(new GetAllQuery());
+        List<TaskView> tasks = taskService.getAll(new GetAllQuery());
 
-        Task task = tasks.get(0);
+        TaskView task = tasks.get(0);
         taskService.delete(task);
 
-        List<Task> fetchedTasksAfterDelete = taskService.getAll(new GetAllQuery());
+        List<TaskView> fetchedTasksAfterDelete = taskService.getAll(new GetAllQuery());
 
         assertThat(fetchedTasksAfterDelete, hasSize(2));
     }
 
     private void addTask(TaskStatus taskStatus) {
-        Task task = new Task();
+        TaskView task = new TaskView();
         task.setStatus(taskStatus);
         taskService.add(task);
     }
