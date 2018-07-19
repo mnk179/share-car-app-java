@@ -58,10 +58,13 @@ public class DefaultTaskService implements TaskService {
     }
 
     @Override
-    public void delete(TaskView taskView) {
-        final Optional<Task> task = taskRepository.findById(taskView.getTaskId());
+    public void delete(long id) {
+        final Optional<Task> task = taskRepository.findById(id);
         if (task.isPresent()) {
             taskRepository.delete(task.get());
+        }
+        else {
+            throw new NotFoundException("Task with id " + id + " was not found");
         }
     }
 }

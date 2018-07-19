@@ -39,4 +39,18 @@ public class TaskApi {
         getTaskResponse.setPriority(task.getPriority());
         return getTaskResponse;
     }
+
+    @DeleteMapping(path = "/{id}")
+    public DeleteTaskResponse delete(@PathVariable(name = "id") long id) {
+        try {
+            taskService.delete(id);
+        } catch (Exception exception) {
+            // TODO: add logging
+            throw new InternalServerException("Internal error occurred!");
+        }
+        DeleteTaskResponse deleteTaskResponse = new DeleteTaskResponse();
+        deleteTaskResponse.setId(1);
+        deleteTaskResponse.setSuccessfullyDeleted(true);
+        return deleteTaskResponse;
+    }
 }

@@ -13,5 +13,5 @@ public interface TaskService {
 
     void add(TaskView task);
 
-    void delete(TaskView task);
+    void delete(long id);
 }
