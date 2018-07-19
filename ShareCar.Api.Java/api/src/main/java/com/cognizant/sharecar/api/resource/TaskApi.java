@@ -1,9 +1,12 @@
 package com.cognizant.sharecar.api.resource;
 
+import com.cognizant.sharecar.api.model.GetAllQuery;
 import com.cognizant.sharecar.api.model.TaskView;
 import com.cognizant.sharecar.api.spi.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -30,14 +33,17 @@ public class TaskApi {
     @GetMapping(path = "/{id}")
     public GetTaskResponse getOne(@PathVariable(name = "id") long id){
         TaskView task = taskService.getOne(id);
-        GetTaskResponse getTaskResponse = new GetTaskResponse();
-        getTaskResponse.setId(task.getTaskId());
-        getTaskResponse.setTitle(task.getTitle());
-        getTaskResponse.setDescription(task.getDescription());
-        getTaskResponse.setEndDate(task.getEndDate());
-        getTaskResponse.setStatus(task.getStatus());
-        getTaskResponse.setPriority(task.getPriority());
-        return getTaskResponse;
+        return new GetTaskResponse(task);
+    }
+
+    @GetMapping
+    public GetTaskResponse getAll () {
+        return new GetTaskResponse(taskService.getAll());
+    }
+
+    @PostMapping (path = "/find")
+    public GetTaskResponse getByQuery(@RequestBody GetAllQuery query) {
+        return new GetTaskResponse(taskService.getAll(query));
     }
 
     @DeleteMapping(path = "/{id}")

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,19 +29,32 @@ public class DefaultTaskService implements TaskService {
     }
 
     @Override
+    public List<TaskView> getAll() {
+        return taskRepository.findAll().stream()
+                .map(task ->
+                        new TaskView(task.getTaskId(),
+                                task.getTitle(),
+                                task.getDescription(),
+                                task.getEndDate(),
+                                task.getStatus(),
+                                task.getPriority()))
+                .collect(toList());
+    }
+
+    @Override
     public List<TaskView> getAll(GetAllQuery getAllQuery) {
         List<Task> tasks;
         final TaskStatus status = getAllQuery.getStatus();
         final Priority priority = getAllQuery.getPriority();
 
-        if (status == null && priority == null){
-            tasks = taskRepository.findAll();
-        } else if (status == null) {
-            tasks = taskRepository.findByPriority(priority);
-        } else if (priority == null) {
-            tasks = taskRepository.findByStatus(status);
-        } else {
+        if (status != null && priority != null){
             tasks = taskRepository.findByStatusAndPriority(status, priority);
+        } else if (status != null) {
+            tasks = taskRepository.findByStatus(status);
+        } else if (priority != null ){
+            tasks = taskRepository.findByPriority(priority);
+        } else {
+            return getAll();
         }
 
         return tasks.stream()

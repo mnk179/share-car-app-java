@@ -1,63 +1,27 @@
 package com.cognizant.sharecar.api.resource;
 
+import com.cognizant.sharecar.api.model.TaskView;
 import com.cognizant.sharecar.common.spi.model.Priority;
 import com.cognizant.sharecar.common.spi.model.TaskStatus;
+import org.springframework.scheduling.config.Task;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GetTaskResponse {
-    private Long id;
-    private String title;
-    private String description;
-    private LocalDateTime endDate;
-    private TaskStatus status;
-    private Priority priority;
 
-    public Long getId() {
-        return id;
+    List<TaskView> tasks = new ArrayList<>();
+
+    public GetTaskResponse(List<TaskView> tasks) {
+        this.tasks = tasks;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public GetTaskResponse (TaskView task) {
+        tasks.add(task);
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDateTime getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDateTime endDate) {
-        this.endDate = endDate;
-    }
-
-    public TaskStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(TaskStatus status) {
-        this.status = status;
-    }
-
-    public Priority getPriority() {
-        return priority;
-    }
-
-    public void setPriority(Priority priority) {
-        this.priority = priority;
+    public List<TaskView> getTasks() {
+        return tasks;
     }
 }

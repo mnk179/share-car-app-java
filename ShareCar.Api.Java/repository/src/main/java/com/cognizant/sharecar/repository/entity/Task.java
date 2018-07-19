@@ -3,9 +3,7 @@ package com.cognizant.sharecar.repository.entity;
 import com.cognizant.sharecar.common.spi.model.Priority;
 import com.cognizant.sharecar.common.spi.model.TaskStatus;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,6 +17,9 @@ public class Task {
     private LocalDateTime endDate;
     private TaskStatus status;
     private Priority priority;
+    @ManyToOne
+    @JoinColumn(name = "task_owner")
+    private Person taskOwner;
 
     public Task(String title, String description, LocalDateTime endDate, TaskStatus status, Priority priority) {
         this.title = title;
@@ -79,6 +80,8 @@ public class Task {
     public void setPriority(Priority priority) {
         this.priority = priority;
     }
+
+
 
     @Override
     public String toString() {
