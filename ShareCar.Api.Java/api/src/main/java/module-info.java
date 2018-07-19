@@ -6,4 +6,5 @@ module api {
     requires spring.web;
     requires spring.beans;
     requires jackson.annotations;
+    requires commons;
 }

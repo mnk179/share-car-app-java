@@ -1,4 +1,4 @@
-package com.cognizant.sharecar.service;
+package com.cognizant.sharecar.api.model;
 
 import com.cognizant.sharecar.common.spi.model.Priority;
 import com.cognizant.sharecar.common.spi.model.TaskStatus;
@@ -64,5 +64,15 @@ public class TaskView {
         this.status = status;
     }
 
-
+    @Override
+    public String toString() {
+        return "TaskView{" +
+                "taskId=" + taskId +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", endDate=" + endDate +
+                ", status=" + status +
+                ", priority=" + priority +
+                '}';
+    }
 }

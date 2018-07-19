@@ -1,19 +1,25 @@
 package com.cognizant.sharecar.service;
 
+import com.cognizant.sharecar.api.model.GetAllQuery;
+import com.cognizant.sharecar.api.model.TaskView;
+import com.cognizant.sharecar.api.spi.TaskService;
 import com.cognizant.sharecar.repository.entity.Task;
 import com.cognizant.sharecar.repository.spi.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
-import static java.util.stream.Collectors.toList;
-
+@Service
 public class DefaultTaskService implements TaskService {
 
+    private final TaskRepository taskRepository;
+
     @Autowired
-    private TaskRepository taskRepository;
+    public DefaultTaskService(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
+    }
 
     @Override
     public List<TaskView> getAll(GetAllQuery getAllQuery) {
@@ -21,6 +27,11 @@ public class DefaultTaskService implements TaskService {
 //            return tasks.stream().filter(task -> task.getStatus() == getAllQuery.getStatus()).collect(toList());
 //        }
 //        return tasks;
+        throw new RuntimeException("Not implemented");
+    }
+
+    @Override
+    public TaskView getOne(Integer id) {
         throw new RuntimeException("Not implemented");
     }
 
@@ -38,5 +49,4 @@ public class DefaultTaskService implements TaskService {
             taskRepository.delete(task.get());
         }
     }
-
 }
