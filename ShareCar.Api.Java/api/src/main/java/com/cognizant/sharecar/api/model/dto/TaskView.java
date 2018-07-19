@@ -14,8 +14,8 @@ public class TaskView implements Identifiable<Long> {
     private String title;
     private String description;
 
-    @JsonFormat(pattern="yyyy-MM-dd")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime endDate;
     private TaskStatus status;
     private Priority priority;
@@ -29,7 +29,6 @@ public class TaskView implements Identifiable<Long> {
         this.status = status;
         this.priority = priority;
     }
-
 
     @Override
     public Long getId() {
