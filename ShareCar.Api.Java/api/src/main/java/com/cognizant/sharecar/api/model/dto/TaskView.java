@@ -2,6 +2,8 @@ package com.cognizant.sharecar.api.model.dto;
 
 import com.cognizant.sharecar.common.spi.model.Priority;
 import com.cognizant.sharecar.common.spi.model.TaskStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.hateoas.Identifiable;
 
 import java.time.LocalDateTime;
@@ -11,12 +13,23 @@ public class TaskView implements Identifiable<Long> {
     private Long id;
     private String title;
     private String description;
+
+    @JsonFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalDateTime endDate;
     private TaskStatus status;
     private Priority priority;
+    public TaskView() {}
 
-    public TaskView() {
+    public TaskView(Long taskId, String title, String description, LocalDateTime endDate, TaskStatus status, Priority priority) {
+        this.id = taskId;
+        this.title = title;
+        this.description = description;
+        this.endDate = endDate;
+        this.status = status;
+        this.priority = priority;
     }
+
 
     @Override
     public Long getId() {
@@ -78,3 +91,4 @@ public class TaskView implements Identifiable<Long> {
                 '}';
     }
 }
+
