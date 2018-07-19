@@ -1,11 +1,10 @@
 package com.cognizant.sharecar.service;
 
-import com.cognizant.sharecar.api.model.request.AddTaskRequest;
-import com.cognizant.sharecar.api.model.request.GetAllQuery;
 import com.cognizant.sharecar.api.model.dto.LazyTaskView;
 import com.cognizant.sharecar.api.model.dto.TaskView;
+import com.cognizant.sharecar.api.model.request.AddTaskRequest;
+import com.cognizant.sharecar.api.model.request.GetAllQuery;
 import com.cognizant.sharecar.api.spi.TaskService;
-import com.cognizant.sharecar.common.spi.model.Priority;
 import com.cognizant.sharecar.common.spi.model.TaskStatus;
 import com.cognizant.sharecar.repository.entity.Task;
 import com.cognizant.sharecar.repository.spi.TaskRepository;
@@ -30,20 +29,9 @@ public class DefaultTaskService implements TaskService {
 
     @Override
     public List<TaskView> getAll(GetAllQuery getAllQuery) {
-        List<Task> tasks;
         final TaskStatus status = getAllQuery.getStatus();
-        final Priority priority = getAllQuery.getPriority();
 
-        if (status == null && priority == null) {
-            tasks = taskRepository.findAll();
-        } else if (status == null) {
-            tasks = taskRepository.findByPriority(priority);
-        } else if (priority == null) {
-            tasks = taskRepository.findByStatus(status);
-        } else {
-            tasks = taskRepository.findByStatusAndPriority(status, priority);
-        }
-        return tasks.stream()
+        return (status != null ? taskRepository.findByStatus(status) : taskRepository.findAll()).stream()
                 .map(task ->
                         new TaskView(task.getTaskId(),
                                 task.getTitle(),
@@ -75,10 +63,10 @@ public class DefaultTaskService implements TaskService {
     public LazyTaskView add(AddTaskRequest request) {
         final TaskView requestTask = request.getTask();
         final Task taskEntity = new Task(requestTask.getTitle(),
-                                         requestTask.getDescription(),
-                                         requestTask.getEndDate(),
-                                         requestTask.getStatus(),
-                                         requestTask.getPriority());
+                requestTask.getDescription(),
+                requestTask.getEndDate(),
+                requestTask.getStatus(),
+                requestTask.getPriority());
         Task detachedEntity = taskRepository.save(taskEntity);
         return new LazyTaskView(detachedEntity.getTaskId());
     }

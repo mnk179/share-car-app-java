@@ -6,8 +6,10 @@ module api {
 
     requires commons;
     requires jackson.annotations;
+    requires com.fasterxml.jackson.databind;
     requires spring.context;
     requires spring.web;
     requires spring.beans;
     requires spring.hateoas;
+    requires jackson.datatype.jsr310;
 }
