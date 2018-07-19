@@ -9,9 +9,9 @@ public interface TaskService {
 
     List<TaskView> getAll(GetAllQuery getAllQuery);
 
-    TaskView getOne(Integer id);
+    TaskView getOne(long id);
 
     void add(TaskView task);
 
-    void delete(TaskView task);
+    void delete(long id);
 }

@@ -63,20 +63,20 @@ public class TaskViewServiceTest {
         assertThat(tasks, hasSize(2));
     }
 
-    @Test
-    public void delete_AddOneTask_OneTaskIsDeleted() {
-        addTask(TaskStatus.DONE);
-        addTask(TaskStatus.OPEN);
-        addTask(TaskStatus.IN_PROGRESS);
-        List<TaskView> tasks = taskService.getAll(new GetAllQuery());
-
-        TaskView task = tasks.get(0);
-        taskService.delete(task);
-
-        List<TaskView> fetchedTasksAfterDelete = taskService.getAll(new GetAllQuery());
-
-        assertThat(fetchedTasksAfterDelete, hasSize(2));
-    }
+//    @Test
+//    public void delete_AddOneTask_OneTaskIsDeleted() {
+//        addTask(TaskStatus.DONE);
+//        addTask(TaskStatus.OPEN);
+//        addTask(TaskStatus.IN_PROGRESS);
+//        List<TaskView> tasks = taskService.getAll(new GetAllQuery());
+//
+//        TaskView task = tasks.get(0);
+//        taskService.delete(task);
+//
+//        List<TaskView> fetchedTasksAfterDelete = taskService.getAll(new GetAllQuery());
+//
+//        assertThat(fetchedTasksAfterDelete, hasSize(2));
+//    }
 
     private void addTask(TaskStatus taskStatus) {
         TaskView task = new TaskView();

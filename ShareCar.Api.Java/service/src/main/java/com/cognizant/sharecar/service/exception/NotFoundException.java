@@ -1,4 +1,8 @@
-package com.cognizant.sharecar.service;
+package com.cognizant.sharecar.service.exception;
 
-public class NotFoundException {
+public class NotFoundException extends RuntimeException {
+    public NotFoundException(String message) {
+        super(message);
+        // Task with {id} was not found
+    }
 }

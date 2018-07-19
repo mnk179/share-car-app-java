@@ -5,6 +5,7 @@ import com.cognizant.sharecar.api.model.TaskView;
 import com.cognizant.sharecar.api.spi.TaskService;
 import com.cognizant.sharecar.repository.entity.Task;
 import com.cognizant.sharecar.repository.spi.TaskRepository;
+import com.cognizant.sharecar.service.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +32,26 @@ public class DefaultTaskService implements TaskService {
     }
 
     @Override
-    public TaskView getOne(Integer id) {
-        throw new RuntimeException("Not implemented");
+    public TaskView getOne(long id) {
+        //throw new RuntimeException("Not implemented");
+        TaskView taskView = new TaskView();
+
+        final Optional<Task> task = taskRepository.findById(id);
+
+        if (task.isPresent()) {
+            Task taskObject = task.get();
+            taskView.setTaskId(taskObject.getTaskId());
+            taskView.setDescription(taskObject.getDescription());
+            taskView.setEndDate(taskObject.getEndDate());
+            taskView.setPriority(taskObject.getPriority());
+            taskView.setStatus(taskObject.getStatus());
+            taskView.setTitle(taskObject.getTitle());
+        }
+        else {
+            throw new NotFoundException("Task with id " + id + " was not found");
+        }
+
+        return taskView;
     }
 
     @Override
@@ -43,10 +62,13 @@ public class DefaultTaskService implements TaskService {
     }
 
     @Override
-    public void delete(TaskView taskView) {
-        final Optional<Task> task = taskRepository.findById(taskView.getTaskId());
+    public void delete(long id) {
+        final Optional<Task> task = taskRepository.findById(id);
         if (task.isPresent()) {
             taskRepository.delete(task.get());
+        }
+        else {
+            throw new NotFoundException("Task with id " + id + " was not found");
         }
     }
 }
