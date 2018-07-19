@@ -1,7 +1,9 @@
 package com.cognizant.sharecar.service;
 
-import com.cognizant.sharecar.api.model.GetAllQuery;
-import com.cognizant.sharecar.api.model.TaskView;
+import com.cognizant.sharecar.api.model.request.AddTaskRequest;
+import com.cognizant.sharecar.api.model.request.GetAllQuery;
+import com.cognizant.sharecar.api.model.dto.LazyTaskView;
+import com.cognizant.sharecar.api.model.dto.TaskView;
 import com.cognizant.sharecar.api.spi.TaskService;
 import com.cognizant.sharecar.repository.entity.Task;
 import com.cognizant.sharecar.repository.spi.TaskRepository;
@@ -39,7 +41,7 @@ public class DefaultTaskService implements TaskService {
         if (optionalTask.isPresent()) {
             Task task = optionalTask.get();
             TaskView taskView = new TaskView();
-            taskView.setTaskId(task.getTaskId());
+            taskView.setId(task.getTaskId());
             taskView.setTitle(task.getTitle());
             taskView.setDescription(task.getDescription());
             taskView.setEndDate(task.getEndDate());
@@ -51,10 +53,15 @@ public class DefaultTaskService implements TaskService {
     }
 
     @Override
-    public void add(TaskView task) {
-        final Task taskEntity =
-                new Task(task.getTitle(), task.getDescription(), task.getEndDate(), task.getStatus(), task.getPriority());
-        taskRepository.save(taskEntity);
+    public LazyTaskView add(AddTaskRequest request) {
+        final TaskView requestTask = request.getTask();
+        final Task taskEntity = new Task(requestTask.getTitle(),
+                                         requestTask.getDescription(),
+                                         requestTask.getEndDate(),
+                                         requestTask.getStatus(),
+                                         requestTask.getPriority());
+        Task detachedEntity = taskRepository.save(taskEntity);
+        return new LazyTaskView(detachedEntity.getTaskId());
     }
 
     @Override

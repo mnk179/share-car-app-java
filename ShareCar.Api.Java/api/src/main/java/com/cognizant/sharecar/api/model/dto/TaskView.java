@@ -1,13 +1,14 @@
-package com.cognizant.sharecar.api.model;
+package com.cognizant.sharecar.api.model.dto;
 
 import com.cognizant.sharecar.common.spi.model.Priority;
 import com.cognizant.sharecar.common.spi.model.TaskStatus;
+import org.springframework.hateoas.Identifiable;
 
 import java.time.LocalDateTime;
 
-public class TaskView {
+public class TaskView implements Identifiable<Long> {
 
-    private Long taskId;
+    private Long id;
     private String title;
     private String description;
     private LocalDateTime endDate;
@@ -17,12 +18,13 @@ public class TaskView {
     public TaskView() {
     }
 
-    public Long getTaskId() {
-        return taskId;
+    @Override
+    public Long getId() {
+        return id;
     }
 
-    public void setTaskId(Long taskId) {
-        this.taskId = taskId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -67,7 +69,7 @@ public class TaskView {
     @Override
     public String toString() {
         return "TaskView{" +
-                "taskId=" + taskId +
+                "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", endDate=" + endDate +

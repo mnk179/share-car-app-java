@@ -1,7 +1,8 @@
 package com.cognizant.sharecar.service;
 
-import com.cognizant.sharecar.api.model.GetAllQuery;
-import com.cognizant.sharecar.api.model.TaskView;
+import com.cognizant.sharecar.api.model.request.AddTaskRequest;
+import com.cognizant.sharecar.api.model.request.GetAllQuery;
+import com.cognizant.sharecar.api.model.dto.TaskView;
 import com.cognizant.sharecar.api.spi.TaskService;
 import com.cognizant.sharecar.common.spi.model.TaskStatus;
 import org.junit.Test;
@@ -81,6 +82,6 @@ public class TaskViewServiceTest {
     private void addTask(TaskStatus taskStatus) {
         TaskView task = new TaskView();
         task.setStatus(taskStatus);
-        taskService.add(task);
+        taskService.add(new AddTaskRequest(task));
     }
 }

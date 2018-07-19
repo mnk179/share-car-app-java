@@ -1,4 +1,4 @@
-package com.cognizant.sharecar.api.model;
+package com.cognizant.sharecar.api.model.request;
 
 import com.cognizant.sharecar.common.spi.model.TaskStatus;
 

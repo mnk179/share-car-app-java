@@ -1,7 +1,9 @@
 package com.cognizant.sharecar.api.spi;
 
-import com.cognizant.sharecar.api.model.GetAllQuery;
-import com.cognizant.sharecar.api.model.TaskView;
+import com.cognizant.sharecar.api.model.request.AddTaskRequest;
+import com.cognizant.sharecar.api.model.request.GetAllQuery;
+import com.cognizant.sharecar.api.model.dto.LazyTaskView;
+import com.cognizant.sharecar.api.model.dto.TaskView;
 
 import java.util.List;
 
@@ -11,7 +13,7 @@ public interface TaskService {
 
     TaskView getOne(Long id);
 
-    void add(TaskView task);
+    LazyTaskView add(AddTaskRequest task);
 
     void delete(long id);
 }
