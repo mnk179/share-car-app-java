@@ -17,6 +17,15 @@ public class TaskView {
     public TaskView() {
     }
 
+    public TaskView(Long taskId, String title, String description, LocalDateTime endDate, TaskStatus status, Priority priority) {
+        this.taskId = taskId;
+        this.title = title;
+        this.description = description;
+        this.endDate = endDate;
+        this.status = status;
+        this.priority = priority;
+    }
+
     public Long getTaskId() {
         return taskId;
     }

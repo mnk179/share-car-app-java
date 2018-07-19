@@ -3,6 +3,8 @@ package com.cognizant.sharecar.service;
 import com.cognizant.sharecar.api.model.GetAllQuery;
 import com.cognizant.sharecar.api.model.TaskView;
 import com.cognizant.sharecar.api.spi.TaskService;
+import com.cognizant.sharecar.common.spi.model.Priority;
+import com.cognizant.sharecar.common.spi.model.TaskStatus;
 import com.cognizant.sharecar.repository.entity.Task;
 import com.cognizant.sharecar.repository.spi.TaskRepository;
 import com.cognizant.sharecar.service.exception.NotFoundException;
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class DefaultTaskService implements TaskService {
@@ -25,12 +29,40 @@ public class DefaultTaskService implements TaskService {
 
     @Override
     public List<TaskView> getAll(GetAllQuery getAllQuery) {
-        List<Task> tasks = new ArrayList<>();
-//        if (getAllQuery.getStatus() != null) {
-//            return tasks.stream().filter(task -> task.getStatus() == getAllQuery.getStatus()).collect(toList());
-//        }
-//        return tasks;
-        throw new RuntimeException("Not implemented");
+        List<Task> tasks;
+        final TaskStatus status = getAllQuery.getStatus();
+        final Priority priority = getAllQuery.getPriority();
+
+        if (status == null && priority == null){
+            tasks = taskRepository.findAll();
+        } else if (status == null) {
+            tasks = taskRepository.findByPriority(priority);
+        } else if (priority == null) {
+            tasks = taskRepository.findByStatus(status);
+        } else {
+            tasks = taskRepository.findByStatusAndPriority(status, priority);
+        }
+
+        return tasks.stream()
+                .map(task ->
+                        new TaskView(task.getTaskId(),
+                        task.getTitle(),
+                        task.getDescription(),
+                        task.getEndDate(),
+                        task.getStatus(),
+                        task.getPriority())).collect(toList());
+    }
+
+    private List<Task> findByStatus(TaskStatus status) {
+        return taskRepository.findByStatus(status);
+    }
+
+    private List<Task> findByPriority(Priority priority) {
+        return taskRepository.findByPriority(priority);
+    }
+
+    private List<Task> findByStatusAndPriority(TaskStatus status, Priority priority) {
+        return taskRepository.findByStatusAndPriority(status, priority);
     }
 
     @Override
