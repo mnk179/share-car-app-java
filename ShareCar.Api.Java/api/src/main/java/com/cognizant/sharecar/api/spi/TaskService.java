@@ -9,7 +9,7 @@ public interface TaskService {
 
     List<TaskView> getAll(GetAllQuery getAllQuery);
 
-    TaskView getOne(Integer id);
+    TaskView getOne(Long id);
 
     void add(TaskView task);
 

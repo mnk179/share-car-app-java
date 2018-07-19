@@ -5,9 +5,11 @@ import com.cognizant.sharecar.api.model.TaskView;
 import com.cognizant.sharecar.api.spi.TaskService;
 import com.cognizant.sharecar.repository.entity.Task;
 import com.cognizant.sharecar.repository.spi.TaskRepository;
+import com.cognizant.sharecar.service.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +25,7 @@ public class DefaultTaskService implements TaskService {
 
     @Override
     public List<TaskView> getAll(GetAllQuery getAllQuery) {
+        List<Task> tasks = new ArrayList<>();
 //        if (getAllQuery.getStatus() != null) {
 //            return tasks.stream().filter(task -> task.getStatus() == getAllQuery.getStatus()).collect(toList());
 //        }
@@ -31,8 +34,20 @@ public class DefaultTaskService implements TaskService {
     }
 
     @Override
-    public TaskView getOne(Integer id) {
-        throw new RuntimeException("Not implemented");
+    public TaskView getOne(Long id) {
+        final Optional<Task> optionalTask = taskRepository.findById(id);
+        if (optionalTask.isPresent()) {
+            Task task = optionalTask.get();
+            TaskView taskView = new TaskView();
+            taskView.setTaskId(task.getTaskId());
+            taskView.setTitle(task.getTitle());
+            taskView.setDescription(task.getDescription());
+            taskView.setEndDate(task.getEndDate());
+            taskView.setStatus(task.getStatus());
+            taskView.setPriority(task.getPriority());
+            return taskView;
+        }
+        throw new NotFoundException("Task with id " + id + " was not found");
     }
 
     @Override
