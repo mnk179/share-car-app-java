@@ -6,23 +6,16 @@ import com.cognizant.sharecar.common.spi.model.TaskStatus;
 public class GetAllQuery {
 
     private TaskStatus status;
-    private Priority priority;
 
     public GetAllQuery(TaskStatus status) {
         this.status = status;
     }
 
-    public GetAllQuery(Priority priority) {
-        this.priority = priority;
-    }
-
     public GetAllQuery(TaskStatus status, Priority priority) {
         this.status = status;
-        this.priority = priority;
     }
 
     public GetAllQuery() {
-
     }
 
     public TaskStatus getStatus() {
@@ -33,11 +26,4 @@ public class GetAllQuery {
         this.status = status;
     }
 
-    public Priority getPriority() {
-        return priority;
-    }
-
-    public void setPriority(Priority priority) {
-        this.priority = priority;
-    }
 }
