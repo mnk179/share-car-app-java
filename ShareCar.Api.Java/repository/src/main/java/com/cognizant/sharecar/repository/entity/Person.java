@@ -15,8 +15,6 @@ public class Person {
     private long personId;
     private String name;
     private String secondName;
-    @OneToMany (mappedBy = "taskOwner")
-    private List<Task> tasks = new ArrayList<>();
 
     public Person() {
     }

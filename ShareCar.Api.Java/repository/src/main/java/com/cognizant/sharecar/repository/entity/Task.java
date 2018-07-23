@@ -17,9 +17,6 @@ public class Task {
     private LocalDateTime endDate;
     private TaskStatus status;
     private Priority priority;
-    @ManyToOne
-    @JoinColumn(name = "task_owner")
-    private Person taskOwner;
 
     public Task(String title, String description, LocalDateTime endDate, TaskStatus status, Priority priority) {
         this.title = title;

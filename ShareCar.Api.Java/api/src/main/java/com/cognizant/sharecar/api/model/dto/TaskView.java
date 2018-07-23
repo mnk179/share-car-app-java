@@ -1,24 +1,28 @@
-package com.cognizant.sharecar.api.model;
+package com.cognizant.sharecar.api.model.dto;
 
 import com.cognizant.sharecar.common.spi.model.Priority;
 import com.cognizant.sharecar.common.spi.model.TaskStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.hateoas.Identifiable;
 
 import java.time.LocalDateTime;
 
-public class TaskView {
+public class TaskView implements Identifiable<Long> {
 
-    private Long taskId;
+    private Long id;
     private String title;
     private String description;
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime endDate;
     private TaskStatus status;
     private Priority priority;
-
-    public TaskView() {
-    }
+    public TaskView() {}
 
     public TaskView(Long taskId, String title, String description, LocalDateTime endDate, TaskStatus status, Priority priority) {
-        this.taskId = taskId;
+        this.id = taskId;
         this.title = title;
         this.description = description;
         this.endDate = endDate;
@@ -26,12 +30,13 @@ public class TaskView {
         this.priority = priority;
     }
 
-    public Long getTaskId() {
-        return taskId;
+    @Override
+    public Long getId() {
+        return id;
     }
 
-    public void setTaskId(Long taskId) {
-        this.taskId = taskId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -76,7 +81,7 @@ public class TaskView {
     @Override
     public String toString() {
         return "TaskView{" +
-                "taskId=" + taskId +
+                "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", endDate=" + endDate +
@@ -85,3 +90,4 @@ public class TaskView {
                 '}';
     }
 }
+

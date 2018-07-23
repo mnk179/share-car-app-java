@@ -1,23 +1,26 @@
 package com.cognizant.sharecar.api.resource;
 
-public class DeleteTaskResponse {
+import com.cognizant.sharecar.api.model.response.ResponseWrapper;
 
-    private boolean successfullyDeleted;
-    private int id;
+public class DeleteTaskResponse implements ResponseWrapper {
 
-    public boolean isSuccessfullyDeleted() {
-        return successfullyDeleted;
+    private boolean deleted;
+    private Long id;
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
-    public void setSuccessfullyDeleted(boolean successfullyDeleted) {
-        this.successfullyDeleted = successfullyDeleted;
+    public boolean isDeleted() {
+        return deleted;
     }
 
-    public int getId() {
+    @Override
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

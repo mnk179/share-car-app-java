@@ -1,27 +1,21 @@
 package com.cognizant.sharecar.api.resource;
 
-import com.cognizant.sharecar.api.model.TaskView;
-import com.cognizant.sharecar.common.spi.model.Priority;
-import com.cognizant.sharecar.common.spi.model.TaskStatus;
-import org.springframework.scheduling.config.Task;
+import com.cognizant.sharecar.api.model.dto.TaskView;
+import com.cognizant.sharecar.api.model.response.ResponseWrapper;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+public class GetTaskResponse implements ResponseWrapper {
 
-public class GetTaskResponse {
+    private TaskView taskView;
 
-    List<TaskView> tasks = new ArrayList<>();
-
-    public GetTaskResponse(List<TaskView> tasks) {
-        this.tasks = tasks;
+    public GetTaskResponse(TaskView taskView) {
+        this.taskView = taskView;
     }
 
-    public GetTaskResponse (TaskView task) {
-        tasks.add(task);
+    public TaskView getTaskView() {
+        return taskView;
     }
 
-    public List<TaskView> getTasks() {
-        return tasks;
+    public void setTaskView(TaskView taskView) {
+        this.taskView = taskView;
     }
 }
