@@ -12,4 +12,5 @@ module api {
     requires spring.beans;
     requires spring.hateoas;
     requires jackson.datatype.jsr310;
+    requires spring.boot;
 }
