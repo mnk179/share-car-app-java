@@ -1,5 +1,6 @@
 package com.cognizant.sharecar.service;
 
+import com.cognizant.sharecar.api.model.dto.LazyTaskView;
 import com.cognizant.sharecar.api.model.request.AddTaskRequest;
 import com.cognizant.sharecar.api.model.request.GetAllQuery;
 import com.cognizant.sharecar.api.model.dto.TaskView;

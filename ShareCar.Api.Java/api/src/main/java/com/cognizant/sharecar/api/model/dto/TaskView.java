@@ -13,7 +13,6 @@ public class TaskView implements Identifiable<Long> {
     private Long id;
     private String title;
     private String description;
-
     @JsonFormat(pattern="yyyy-MM-dd HH:mm")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime endDate;
