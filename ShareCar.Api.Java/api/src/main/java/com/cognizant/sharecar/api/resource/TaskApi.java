@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.*;
 
@@ -55,9 +54,10 @@ public class TaskApi implements GetIdentifier {
                             taskView.getId(),
                             taskView.getTitle(),
                             taskView.getStatus(),
-                            taskView.getPriority()
-                    );
-                    lazyResponse.add(ApiUtil.getHrefForGet(taskView.getId(), this.getClass()));
+                            taskView.getPriority(),
+                            ApiUtil.getHrefForGet(taskView.getId(), this.getClass()).getHref());
+
+//                    lazyResponse.add(ApiUtil.getHrefForGet(taskView.getId(), this.getClass()));
                     return lazyResponse;
                 })
                 .collect(toList());

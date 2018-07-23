@@ -10,12 +10,19 @@ public class GetTaskLazyResponse extends ResourceSupport {
     private String title;
     private TaskStatus status;
     private Priority priority;
+    private String href;
 
-    GetTaskLazyResponse(Long taskId, String title, TaskStatus status, Priority priority) {
+    public String getHref() {
+        return href;
+    }
+
+    GetTaskLazyResponse(Long taskId, String title, TaskStatus status, Priority priority, String href) {
         this.taskId = taskId;
         this.title = title;
         this.status = status;
         this.priority = priority;
+        this.href = href;
+
     }
 
     @JsonProperty("id")
