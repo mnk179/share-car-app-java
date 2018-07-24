@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.*;
 
@@ -31,7 +30,7 @@ public class TaskApi implements GetIdentifier {
     public ResponseEntity<AddTaskResponse> add(@RequestBody AddTaskRequest taskRequest) {
         try {
             LazyTaskView lazyTaskView = taskService.add(taskRequest);
-            AddTaskResponse response = new AddTaskResponse();
+            AddTaskResponse response = new AddTaskResponse(lazyTaskView.getId());
             response.add(ApiUtil.getHrefForGet(lazyTaskView.getId(), this.getClass()));
             return ResponseEntity.ok(response);
         } catch (Exception exception) {
@@ -51,8 +50,14 @@ public class TaskApi implements GetIdentifier {
         List<GetTaskLazyResponse> responses = tasks
                 .stream()
                 .map(taskView -> {
-                    GetTaskLazyResponse lazyResponse = new GetTaskLazyResponse();
-                    lazyResponse.add(ApiUtil.getHrefForGet(taskView.getId(), this.getClass()));
+                    GetTaskLazyResponse lazyResponse = new GetTaskLazyResponse(
+                            taskView.getId(),
+                            taskView.getTitle(),
+                            taskView.getStatus(),
+                            taskView.getPriority(),
+                            ApiUtil.getHrefForGet(taskView.getId(), this.getClass()).getHref());
+
+//                    lazyResponse.add(ApiUtil.getHrefForGet(taskView.getId(), this.getClass()));
                     return lazyResponse;
                 })
                 .collect(toList());
