@@ -7,17 +7,24 @@ public class RideView implements Identifiable<Long> {
 
     private Long id;
     private RideStatus status;
-    private UserView passenger;
-    private TripView trip;
+    private Long passengerId;
+    private Long passengerFirstName;
+    private Long passengerLastName;
+    private Long tripId;
+    private Long driverId;
+    private Long driverFirstName;
+    private Long driverLastName;
 
-    public RideView() {
-    }
-
-    public RideView(Long id, RideStatus status, UserView passenger, TripView trip) {
+    public RideView(Long id, RideStatus status, Long passengerId, Long passengerFirstName, Long passengerLastName, Long tripId, Long driverId, Long driverFirstName, Long driverLastName) {
         this.id = id;
         this.status = status;
-        this.passenger = passenger;
-        this.trip = trip;
+        this.passengerId = passengerId;
+        this.passengerFirstName = passengerFirstName;
+        this.passengerLastName = passengerLastName;
+        this.tripId = tripId;
+        this.driverId = driverId;
+        this.driverFirstName = driverFirstName;
+        this.driverLastName = driverLastName;
     }
 
     @Override
@@ -37,19 +44,59 @@ public class RideView implements Identifiable<Long> {
         this.status = status;
     }
 
-    public UserView getPassenger() {
-        return passenger;
+    public Long getPassengerId() {
+        return passengerId;
     }
 
-    public void setPassenger(UserView passenger) {
-        this.passenger = passenger;
+    public void setPassengerId(Long passengerId) {
+        this.passengerId = passengerId;
     }
 
-    public TripView getTrip() {
-        return trip;
+    public Long getPassengerFirstName() {
+        return passengerFirstName;
     }
 
-    public void setTrip(TripView trip) {
-        this.trip = trip;
+    public void setPassengerFirstName(Long passengerFirstName) {
+        this.passengerFirstName = passengerFirstName;
+    }
+
+    public Long getPassengerLastName() {
+        return passengerLastName;
+    }
+
+    public void setPassengerLastName(Long passengerLastName) {
+        this.passengerLastName = passengerLastName;
+    }
+
+    public Long getTripId() {
+        return tripId;
+    }
+
+    public void setTripId(Long tripId) {
+        this.tripId = tripId;
+    }
+
+    public Long getDriverFirstName() {
+        return driverFirstName;
+    }
+
+    public void setDriverFirstName(Long driverFirstName) {
+        this.driverFirstName = driverFirstName;
+    }
+
+    public Long getDriverLastName() {
+        return driverLastName;
+    }
+
+    public void setDriverLastName(Long driverLastName) {
+        this.driverLastName = driverLastName;
+    }
+
+    public Long getDriverId() {
+        return driverId;
+    }
+
+    public void setDriverId(Long driverId) {
+        this.driverId = driverId;
     }
 }

@@ -19,12 +19,12 @@ public class TripView implements Identifiable<Long> {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime dateTime;
     private UserView driver;
-    private List<RideView> rides = new ArrayList<>();
+    private List<LazyRideView> rides = new ArrayList<>();
 
     public TripView() {
     }
 
-    public TripView(Long id, String route, TripStatus status, LocalDateTime dateTime, UserView driver, List<RideView> rides) {
+    public TripView(Long id, String route, TripStatus status, LocalDateTime dateTime, UserView driver, List<LazyRideView> rides) {
         this.id = id;
         this.route = route;
         this.status = status;
@@ -74,11 +74,11 @@ public class TripView implements Identifiable<Long> {
         this.driver = driver;
     }
 
-    public List<RideView> getRides() {
+    public List<LazyRideView> getRides() {
         return rides;
     }
 
-    public void setRides(List<RideView> rides) {
+    public void setRides(List<LazyRideView> rides) {
         this.rides = rides;
     }
 }

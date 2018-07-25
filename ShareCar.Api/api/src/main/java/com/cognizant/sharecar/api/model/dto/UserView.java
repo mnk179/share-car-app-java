@@ -14,12 +14,12 @@ public class UserView implements Identifiable<Long> {
     private String phoneNo;
 
     private List<TripView> trips = new ArrayList<>();
-    private List<RideView> rides = new ArrayList<>();
+    private List<LazyRideView> rides = new ArrayList<>();
 
     public UserView() {
     }
 
-    public UserView(Long id, String firstName, String lastName, String email, String phoneNo, List<TripView> trips, List<RideView> rides) {
+    public UserView(Long id, String firstName, String lastName, String email, String phoneNo, List<TripView> trips, List<LazyRideView> rides) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -78,11 +78,11 @@ public class UserView implements Identifiable<Long> {
         this.trips = trips;
     }
 
-    public List<RideView> getRides() {
+    public List<LazyRideView> getRides() {
         return rides;
     }
 
-    public void setRides(List<RideView> rides) {
+    public void setRides(List<LazyRideView> rides) {
         this.rides = rides;
     }
 }
