@@ -24,6 +24,8 @@
 
     <properties>
         <java.version>10</java.version>
+        <!-- The main class to start by executing java -jar -->
+        <start-class>com.cognizant.sharecar.ShareCarApp</start-class>
     </properties>
 
     <build>
@@ -52,10 +54,6 @@
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.0.2</version>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
