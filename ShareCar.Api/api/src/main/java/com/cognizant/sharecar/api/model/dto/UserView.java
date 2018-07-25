@@ -19,14 +19,12 @@ public class UserView implements Identifiable<Long> {
     public UserView() {
     }
 
-    public UserView(Long id, String firstName, String lastName, String email, String phoneNo, List<TripView> trips, List<RideView> rides) {
+    public UserView(Long id, String firstName, String lastName, String email, String phoneNo) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNo = phoneNo;
-        this.trips = trips;
-        this.rides = rides;
     }
 
     @Override
