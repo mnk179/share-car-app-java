@@ -1,4 +1,4 @@
-package com.cognizant.sharecar.api.resource;
+package com.cognizant.sharecar.api.model.response;
 
 import com.cognizant.sharecar.common.spi.model.RideStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;

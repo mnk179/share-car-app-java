@@ -2,6 +2,7 @@ package com.cognizant.sharecar.api.resource;
 
 import com.cognizant.sharecar.api.model.dto.LazyRideView;
 import com.cognizant.sharecar.api.model.request.GetAllRidesQuery;
+import com.cognizant.sharecar.api.model.response.GetRideLazyResponse;
 import com.cognizant.sharecar.api.model.response.ResponseWrapper;
 import com.cognizant.sharecar.api.spi.RideService;
 import com.cognizant.sharecar.api.util.GetIdentifier;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 @RestController
