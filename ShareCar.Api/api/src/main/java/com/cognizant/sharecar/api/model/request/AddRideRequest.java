@@ -8,9 +8,11 @@ public class AddRideRequest {
     private Long tripId;
 
     public AddRideRequest(Long passengerId, Long tripId) {
-
         this.passengerId = passengerId;
         this.tripId = tripId;
+    }
+
+    public AddRideRequest() {
     }
 
     public Long getPassengerId() {

@@ -13,45 +13,45 @@ import com.cognizant.sharecar.repository.entity.User;
 import com.cognizant.sharecar.repository.spi.RideRepository;
 import com.cognizant.sharecar.repository.spi.TripRepository;
 import com.cognizant.sharecar.repository.spi.UserRepository;
+import com.cognizant.sharecar.service.exception.NotFoundException;
 import com.cognizant.sharecar.service.exception.NotImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.config.Task;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import static com.cognizant.sharecar.common.spi.model.RideStatus.REQUEST_PENDING;
 import static java.util.stream.Collectors.toList;
 
 @Service
 public class DefaultRideService implements RideService {
 
     private final RideRepository rideRepository;
-//    private final UserRepository userRepository;
-//    private final TripRepository tripRepository;
 
-//    @Autowired
-//    public DefaultRideService(RideRepository repository) {
-//        this.rideRepository = repository;
-//    }
+    private final UserRepository userRepository;
+    private final TripRepository tripRepository;
 
     @Autowired
-    public DefaultRideService(RideRepository rideRepository) {
+    public DefaultRideService(RideRepository rideRepository, UserRepository userRepository, TripRepository tripRepository) {
         this.rideRepository = rideRepository;
-//        this.userRepository = userRepository;
-//        this.tripRepository = tripRepository;
+        this.userRepository = userRepository;
+        this.tripRepository = tripRepository;
     }
 
     @Override
     public List<LazyRideView> getAll(GetAllRidesQuery getAllQuery) {
 
-//        rideRepository.deleteAll();
-//        tripRepository.deleteAll();
-//        userRepository.deleteAll();
-//
-//        userRepository.save(new User("Tom", "Wiemer", "tom.wiemer@hello.com", "+370612904810"));
-//        tripRepository.save(new Trip("Alytus->Vilnius", TripStatus.SCHEDULED, LocalDateTime.now(), userRepository.findByEmail("tom.wiemer@hello.com").get(0), new ArrayList<Ride>()));
-//        rideRepository.save(new Ride(RideStatus.REQUEST_PENDING, userRepository.findByEmail("tom.wiemer@hello.com").get(0), tripRepository.findByRoute("Alytus->Vilnius").get(0)));
+        rideRepository.deleteAll();
+        tripRepository.deleteAll();
+        userRepository.deleteAll();
+
+        userRepository.save(new User("Tom", "Wiemer", "tom.wiemer@hello.com", "+370612904810"));
+        tripRepository.save(new Trip("Alytus->Vilnius", TripStatus.SCHEDULED, LocalDateTime.now(), userRepository.findByEmail("tom.wiemer@hello.com").get(0), new ArrayList<Ride>()));
+        rideRepository.save(new Ride(RideStatus.REQUEST_PENDING, userRepository.findByEmail("tom.wiemer@hello.com").get(0), tripRepository.findByRoute("Alytus->Vilnius").get(0)));
 
         final RideStatus status = getAllQuery.getStatus();
         final Long passengerId = getAllQuery.getPassengerId();
@@ -77,21 +77,40 @@ public class DefaultRideService implements RideService {
 
     @Override
     public LazyRideView add(AddRideRequest request) {
-        final RideView requestRide = request.getRide();
-        final ridePassenger = new User(requestRide.getPassengerFirstName(), requestRide.getPassengerLastName(), requestRide.getPassengerEmail()
-        final Ride rideEntity = new Ride(requestRide.getStatus(),
-                requestRide.getPassenger()
+        // TODO replace with call to UserService
+        final Optional<User> passengerOptional = userRepository.findById(request.getPassengerId());
+        // TODO replace with call to TripService
+        final Optional<Trip> tripOptional = tripRepository.findById(request.getTripId());
+
+        if (!passengerOptional.isPresent()) {
+            throw new NotFoundException("Passenger does not exist");
+            //return Optional.empty();
+        }
+        else if (!tripOptional.isPresent()) {
+            throw new NotFoundException("Trip does not exist");
+            //return Optional.empty();
+        }
+        else {
+            final Ride rideEntity = new Ride(REQUEST_PENDING, passengerOptional.get(), tripOptional.get());
+            Ride detachedEntity = rideRepository.save(rideEntity);
+            return new LazyRideView(detachedEntity.getId(),
+                    detachedEntity.getStatus(),
+                    detachedEntity.getPassenger().getId(),
+                    detachedEntity.getTrip().getId(),
+                    detachedEntity.getTrip().getDriver().getFirstName(),
+                    detachedEntity.getTrip().getDriver().getLastName());
+        }
     }
 
-    @Override
-    public LazyTaskView add(AddTaskRequest request) {
-        final TaskView requestTask = request.getTask();
-        final Task taskEntity = new Task(requestTask.getTitle(),
-                requestTask.getDescription(),
-                requestTask.getEndDate(),
-                requestTask.getStatus(),
-                requestTask.getPriority());
-        Task detachedEntity = taskRepository.save(taskEntity);
-        return new LazyTaskView(detachedEntity.getTaskId());
-    }
+//    @Override
+//    public LazyTaskView add(AddTaskRequest request) {
+//        final TaskView requestTask = request.getTask();
+//        final Task taskEntity = new Task(requestTask.getTitle(),
+//                requestTask.getDescription(),
+//                requestTask.getEndDate(),
+//                requestTask.getStatus(),
+//                requestTask.getPriority());
+//        Task detachedEntity = taskRepository.save(taskEntity);
+//        return new LazyTaskView(detachedEntity.getTaskId());
+//    }
 }
