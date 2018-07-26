@@ -43,9 +43,7 @@ public class GetTripResponse {
         return status;
     }
 
-    public void setStatus(TripStatus status) {
-        this.status = status;
-    }
+    public void setStatus(TripStatus status) { this.status = status; }
 
     public LocalDateTime getDateTime() {
         return dateTime;

@@ -33,12 +33,12 @@ public class DefaultTripService implements TripService {
                                     trip.getStatus(),
                                     trip.getDateTime(),
                                     trip.getDriver().getId());
-                    if(trip.getRides()!= null) {
-                        tripView.setRideIdList(trip.getRides()
-                                .stream()
-                                .map(Ride::getId)
-                                .collect(toList()));
-                    }
+
+                    tripView.setRideIdList(trip.getRides()
+                            .stream()
+                            .map(Ride::getId)
+                            .collect(toList()));
+
                     return tripView;})
                 .collect(toList());
     }

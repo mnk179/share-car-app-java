@@ -25,8 +25,8 @@ public class TripApi{
 
     @GetMapping
     public ResponseEntity<List<GetTripResponse>> getAll(@RequestParam(required = false) TripStatus status) {
-        List<TripView> tasks = tripService.getAll(new GetAllTripsQuery());
-        List<GetTripResponse> responses = tasks
+        List<TripView> trips = tripService.getAll(new GetAllTripsQuery());
+        List<GetTripResponse> responses = trips
                 .stream()
                 .map(GetTripResponse::new)
                 .collect(toList());
