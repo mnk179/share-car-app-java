@@ -1,6 +1,7 @@
 package com.cognizant.sharecar.api.spi;
 
 import com.cognizant.sharecar.api.model.dto.LazyRideView;
+import com.cognizant.sharecar.api.model.dto.RideView;
 import com.cognizant.sharecar.api.model.request.AddRideRequest;
 import com.cognizant.sharecar.api.model.request.GetAllRidesQuery;
 
@@ -12,10 +13,5 @@ public interface RideService {
 
     LazyRideView add(AddRideRequest ride);
 
-//
-//    TaskView getOne(Long id);
-//
-//    LazyTaskView add(AddTaskRequest task);
-//
-//    void delete(long id);
+    RideView getOne(Long id);
 }

@@ -7,8 +7,6 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication(scanBasePackages = {"com.cognizant.sharecar"})
 public class ShareCarApp {
 
-    public static void main(String[] args) {
-        SpringApplication.run(ShareCarApp.class, args);
-    }
+    public static void main(String[] args) { SpringApplication.run(ShareCarApp.class, args); }
 
 }
