@@ -40,23 +40,6 @@ public class RideApi implements GetIdentifier {
                 .collect(toList());
 
         return ResponseEntity.ok(responses);
-//        List<TaskView> tasks = taskService.getAll(new GetAllQuery(status));
-//        List<GetTaskLazyResponse> responses = tasks
-//                .stream()
-//                .map(taskView -> {
-//                    GetTaskLazyResponse lazyResponse = new GetTaskLazyResponse(
-//                            taskView.getId(),
-//                            taskView.getTitle(),
-//                            taskView.getStatus(),
-//                            taskView.getPriority(),
-//                            ApiUtil.getHrefForGet(taskView.getId(), this.getClass()).getHref());
-//
-////                    lazyResponse.add(ApiUtil.getHrefForGet(taskView.getId(), this.getClass()));
-//                    return lazyResponse;
-//                })
-//                .collect(toList());
-//
-//        return ResponseEntity.ok(responses);
     }
 
     @GetMapping(path = "/{id}")
