@@ -1,8 +1,8 @@
 module api {
-//    exports com.cognizant.sharecar.api.spi;
+    exports com.cognizant.sharecar.api.spi;
 //    exports com.cognizant.sharecar.api.model;
-//    exports com.cognizant.sharecar.api.model.dto;
-//    exports com.cognizant.sharecar.api.model.request;
+    exports com.cognizant.sharecar.api.model.dto;
+    exports com.cognizant.sharecar.api.model.request;
 
     requires commons;
     requires jackson.annotations;

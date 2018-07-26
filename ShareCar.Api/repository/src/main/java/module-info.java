@@ -1,7 +1,7 @@
 module repository {
 
-//    exports com.cognizant.sharecar.repository.spi;
-//    exports com.cognizant.sharecar.repository.entity;
+    exports com.cognizant.sharecar.repository.spi;
+    exports com.cognizant.sharecar.repository.entity;
 
     requires spring.context;
     requires spring.boot.autoconfigure;
