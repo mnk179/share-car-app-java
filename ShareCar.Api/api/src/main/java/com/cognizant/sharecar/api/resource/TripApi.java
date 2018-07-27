@@ -22,6 +22,12 @@ public class TripApi{
     @Autowired
     private TripService tripService;
 
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<GetTripResponse> getOne(@PathVariable(name = "id") Long id) {
+        TripView trip = tripService.getOne(id);
+        return ResponseEntity.ok(new GetTripResponse(trip));
+    }
+
     @GetMapping
     public ResponseEntity<List<GetTripResponse>> getAll(@RequestParam(required = false) TripStatus status) {
         List<TripView> trips = tripService.getAll(new GetAllTripsQuery());

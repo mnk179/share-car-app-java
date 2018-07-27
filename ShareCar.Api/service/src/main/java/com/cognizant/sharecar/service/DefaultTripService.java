@@ -10,6 +10,7 @@ import com.cognizant.sharecar.repository.entity.Ride;
 import com.cognizant.sharecar.repository.entity.Trip;
 import com.cognizant.sharecar.repository.entity.User;
 import com.cognizant.sharecar.repository.spi.TripRepository;
+import com.cognizant.sharecar.service.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,20 @@ public class DefaultTripService implements TripService {
     @Autowired
     public DefaultTripService(TripRepository tripRepository) {
         this.tripRepository = tripRepository;
+    }
+
+    @Override
+    public TripView getOne(Long id) {
+        return tripRepository.findById(id)
+                .map(trip -> new TripView(trip.getId(),
+                                        trip.getRoute(),
+                                        trip.getStatus(),
+                                        trip.getDateTime(),
+                                        new LazyUserView(trip.getDriver().getId(),
+                                                trip.getDriver().getFirstName(),
+                                                trip.getDriver().getLastName(),
+                                                trip.getDriver().getPhoneNo())))
+                .orElseThrow(() -> new NotFoundException("Trip with id " + id + " was not found"));
     }
 
     @Override

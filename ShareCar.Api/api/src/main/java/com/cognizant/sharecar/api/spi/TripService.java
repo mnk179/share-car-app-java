@@ -7,6 +7,9 @@ import com.cognizant.sharecar.api.model.request.GetAllTripsQuery;
 import java.util.List;
 
 public interface TripService {
+
+    TripView getOne(Long id);
+
     List<TripView> getAll(GetAllTripsQuery getAllTripsQuery);
 
     Long add(AddTripRequest request);
