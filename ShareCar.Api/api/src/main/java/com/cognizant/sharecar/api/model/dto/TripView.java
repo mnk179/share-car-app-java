@@ -17,18 +17,18 @@ public class TripView implements Identifiable<Long> {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime dateTime;
-    private Long driverId;
+    private LazyUserView driver;
     private List<Long> rideIdList = new ArrayList<>();
 
     public TripView() {
     }
 
-    public TripView(Long id, String route, TripStatus status, LocalDateTime dateTime, Long driverId) {
+    public TripView(Long id, String route, TripStatus status, LocalDateTime dateTime, LazyUserView driver) {
         this.id = id;
         this.route = route;
         this.status = status;
         this.dateTime = dateTime;
-        this.driverId = driverId;
+        this.driver = driver;
     }
 
     @Override
@@ -64,12 +64,12 @@ public class TripView implements Identifiable<Long> {
         this.dateTime = dateTime;
     }
 
-    public Long getDriverId() {
-        return driverId;
+    public LazyUserView getDriver() {
+        return driver;
     }
 
-    public void setDriverId(Long driverId) {
-        this.driverId = driverId;
+    public void setDriver(LazyUserView driver) {
+        this.driver = driver;
     }
 
     public List<Long> getRideIdList() {
