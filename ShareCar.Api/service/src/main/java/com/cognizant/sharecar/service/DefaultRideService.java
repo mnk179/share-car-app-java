@@ -35,15 +35,15 @@ public class DefaultRideService implements RideService {
     private final UserRepository userRepository;
     private final TripRepository tripRepository;
 
-    public void populateRepoWithDummyData() {
-        rideRepository.deleteAll();
-        tripRepository.deleteAll();
-        userRepository.deleteAll();
-
-        userRepository.save(new User("Tom", "Wiemer", "tom.wiemer@hello.com", "+370612904810"));
-        tripRepository.save(new Trip("Alytus->Vilnius", TripStatus.SCHEDULED, LocalDateTime.now(), userRepository.findByEmail("tom.wiemer@hello.com").get(0), new ArrayList<Ride>()));
-        rideRepository.save(new Ride(RideStatus.REQUEST_PENDING, userRepository.findByEmail("tom.wiemer@hello.com").get(0), tripRepository.findByRoute("Alytus->Vilnius").get(0)));
-    }
+//    public void populateRepoWithDummyData() {
+//        rideRepository.deleteAll();
+//        tripRepository.deleteAll();
+//        userRepository.deleteAll();
+//
+//        userRepository.save(new User("Tom", "Wiemer", "tom.wiemer@hello.com", "+370612904810"));
+//        tripRepository.save(new Trip("Alytus->Vilnius", TripStatus.SCHEDULED, LocalDateTime.now(), userRepository.findByEmail("tom.wiemer@hello.com").get(0), new ArrayList<Ride>()));
+//        rideRepository.save(new Ride(RideStatus.REQUEST_PENDING, userRepository.findByEmail("tom.wiemer@hello.com").get(0), tripRepository.findByRoute("Alytus->Vilnius").get(0)));
+//    }
 
     @Autowired
     public DefaultRideService(RideRepository rideRepository, UserRepository userRepository, TripRepository tripRepository) {
