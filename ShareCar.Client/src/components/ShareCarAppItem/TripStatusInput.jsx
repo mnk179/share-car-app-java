@@ -1,16 +1,11 @@
-// @flow
 import * as React from "react";
-import * as ShareCarAppItem from "../../data/ShareCarAppItem.js";
+import * as shareCarAppItem from "../../data/shareCarAppItem";
 
-type TripStatusInputProps = {
-    status: ShareCarAppItem.Status
-}
-
-export class TripStatusInput extends React.Component<TripStatusInputProps> {
+export class TripStatusInput extends React.Component{
     render(){
         return (
-            <select name="trip status" defaultValue={this.props.status}>
-                {ShareCarAppItem.Status.map((x,i) =>
+            <select name="trip_status" defaultValue={this.props.TripStatus}>
+                {shareCarAppItem.TripStatus.map((x,i) =>
                     <option key={i} value={x}>{x}</option>)
                 }
             </select>
