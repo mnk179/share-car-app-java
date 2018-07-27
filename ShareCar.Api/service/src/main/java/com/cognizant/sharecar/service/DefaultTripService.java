@@ -1,10 +1,14 @@
-package com.cognizant.sharecar.service.utilities;
+package com.cognizant.sharecar.service;
 
+import com.cognizant.sharecar.api.model.dto.LazyUserView;
 import com.cognizant.sharecar.api.model.dto.TripView;
+import com.cognizant.sharecar.api.model.request.AddTripRequest;
 import com.cognizant.sharecar.api.model.request.GetAllTripsQuery;
 import com.cognizant.sharecar.api.spi.TripService;
+import com.cognizant.sharecar.common.spi.model.TripStatus;
 import com.cognizant.sharecar.repository.entity.Ride;
 import com.cognizant.sharecar.repository.entity.Trip;
+import com.cognizant.sharecar.repository.entity.User;
 import com.cognizant.sharecar.repository.spi.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +23,7 @@ public class DefaultTripService implements TripService {
     private final TripRepository tripRepository;
 
     @Autowired
-    public DefaultTripService(TripRepository tripRepository){
+    public DefaultTripService(TripRepository tripRepository) {
         this.tripRepository = tripRepository;
     }
 
@@ -32,7 +36,11 @@ public class DefaultTripService implements TripService {
                                     trip.getRoute(),
                                     trip.getStatus(),
                                     trip.getDateTime(),
-                                    trip.getDriver().getId());
+                                    new LazyUserView(trip.getDriver().getId(),
+                                            trip.getDriver().getFirstName(),
+                                            trip.getDriver().getLastName(),
+                                            trip.getDriver().getPhoneNo())
+                    );
 
                     tripView.setRideIdList(trip.getRides()
                             .stream()
@@ -41,5 +49,15 @@ public class DefaultTripService implements TripService {
 
                     return tripView;})
                 .collect(toList());
+    }
+
+    @Override
+    public Long add(AddTripRequest request) {
+        final Trip tripEntity = new Trip(request.getRoute(),
+                TripStatus.SCHEDULED,
+                request.getDateTime(),
+                new User(request.getDriverId())
+        );
+        return tripRepository.save(tripEntity).getId();
     }
 }

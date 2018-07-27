@@ -1,5 +1,6 @@
 package com.cognizant.sharecar.api.model.response;
 
+import com.cognizant.sharecar.api.model.dto.LazyUserView;
 import com.cognizant.sharecar.api.model.dto.TripView;
 import com.cognizant.sharecar.common.spi.model.TripStatus;
 
@@ -11,7 +12,7 @@ public class GetTripResponse {
     private String route;
     private TripStatus status;
     private LocalDateTime dateTime;
-    private Long driverId;
+    private LazyUserView driver;
     private List<Long> rideIdList;
 
     public GetTripResponse(TripView trip) {
@@ -19,7 +20,7 @@ public class GetTripResponse {
         this.route = trip.getRoute();
         this.status = trip.getStatus();
         this.dateTime = trip.getDateTime();
-        this.driverId = trip.getDriverId();
+        this.driver = trip.getDriver();
         this.rideIdList = trip.getRideIdList();
     }
 
@@ -53,12 +54,12 @@ public class GetTripResponse {
         this.dateTime = dateTime;
     }
 
-    public Long getDriverId() {
-        return driverId;
+    public LazyUserView getDriver() {
+        return driver;
     }
 
-    public void setDriverId(Long driverId) {
-        this.driverId = driverId;
+    public void setDriver(LazyUserView driver) {
+        this.driver = driver;
     }
 
     public List<Long> getRideIdList() {
