@@ -25,14 +25,19 @@ public class RideApi implements GetIdentifier {
     private RideService rideService;
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<GetRideResponse> getOne(@PathVariable("id") Long id) {
-        RideView rideView = rideService.getOne(id);
-        return ResponseEntity.ok(new GetRideResponse(rideView));
+    public ResponseEntity<GetRideResponse> getOne(@PathVariable(name = "id") Long id) {
+        try {
+            RideView rideView = rideService.getOne(id);
+            return ResponseEntity.ok(new GetRideResponse(rideView));
+
+        }
+        catch (Exception exception) {
+            throw new InternalServerException("Internal error occurred");
+        }
     }
 
     @GetMapping
     public ResponseEntity<List<GetRideLazyResponse>> getAll(@RequestParam(required = false) RideStatus status, @RequestParam(required = false) Long passenger_id, @RequestParam(required = false) Long trip_id) {
-
         List<LazyRideView> rides = rideService.getAll(new GetAllRidesQuery(status, passenger_id, trip_id));
         List<GetRideLazyResponse> responses = rides
                 .stream()
