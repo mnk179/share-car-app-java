@@ -54,7 +54,7 @@ public class DefaultRideService implements RideService {
 
     @Override
     public List<LazyRideView> getAll(GetAllRidesQuery getAllQuery) {
-        populateRepoWithDummyData();
+        //populateRepoWithDummyData();
 
         final RideStatus status = getAllQuery.getStatus();
         final Long passengerId = getAllQuery.getPassengerId();
@@ -80,6 +80,23 @@ public class DefaultRideService implements RideService {
 
     @Override
     public LazyRideView add(AddRideRequest request) {
+//       // try {
+//            final Ride rideEntity = new Ride(REQUEST_PENDING, new User(request.getPassengerId()), new Trip(request.getTripId()));
+//            Ride detachedEntity = rideRepository.save(rideEntity);
+//            return new LazyRideView(detachedEntity.getId(),
+//                    detachedEntity.getStatus(),
+//                    detachedEntity.getPassenger().getId(),
+//                    detachedEntity.getTrip().getId(),
+//                    detachedEntity.getTrip().getDriver().getFirstName(),
+//                    detachedEntity.getTrip().getDriver().getLastName());
+////        }
+////        catch (Exception exception) {
+////            System.out.println(exception.getStackTrace());
+////            throw new NotFoundException("Passenger or trip does not exist");
+////        }
+
+
+
         // TODO replace with call to UserService
         final Optional<User> passengerOptional = userRepository.findById(request.getPassengerId());
         // TODO replace with call to TripService

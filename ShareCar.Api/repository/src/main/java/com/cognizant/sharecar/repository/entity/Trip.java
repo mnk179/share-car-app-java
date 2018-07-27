@@ -26,6 +26,10 @@ public class Trip {
     public Trip() {
     }
 
+    public Trip(Long id) {
+        this.id = id;
+    }
+
     public Trip(String route, TripStatus status, LocalDateTime dateTime, User driver, List<Ride> rides) {
         this.route = route;
         this.status = status;
