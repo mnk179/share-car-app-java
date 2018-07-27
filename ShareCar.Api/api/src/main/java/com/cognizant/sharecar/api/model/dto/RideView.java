@@ -8,14 +8,14 @@ public class RideView implements Identifiable<Long> {
     private Long id;
     private RideStatus status;
     private Long passengerId;
-    private Long passengerFirstName;
-    private Long passengerLastName;
+    private String passengerFirstName;
+    private String passengerLastName;
     private Long tripId;
     private Long driverId;
-    private Long driverFirstName;
-    private Long driverLastName;
+    private String driverFirstName;
+    private String driverLastName;
 
-    public RideView(Long id, RideStatus status, Long passengerId, Long passengerFirstName, Long passengerLastName, Long tripId, Long driverId, Long driverFirstName, Long driverLastName) {
+    public RideView(Long id, RideStatus status, Long passengerId, String passengerFirstName, String passengerLastName, Long tripId, Long driverId, String driverFirstName, String driverLastName) {
         this.id = id;
         this.status = status;
         this.passengerId = passengerId;
@@ -52,19 +52,19 @@ public class RideView implements Identifiable<Long> {
         this.passengerId = passengerId;
     }
 
-    public Long getPassengerFirstName() {
+    public String getPassengerFirstName() {
         return passengerFirstName;
     }
 
-    public void setPassengerFirstName(Long passengerFirstName) {
+    public void setPassengerFirstName(String passengerFirstName) {
         this.passengerFirstName = passengerFirstName;
     }
 
-    public Long getPassengerLastName() {
+    public String getPassengerLastName() {
         return passengerLastName;
     }
 
-    public void setPassengerLastName(Long passengerLastName) {
+    public void setPassengerLastName(String passengerLastName) {
         this.passengerLastName = passengerLastName;
     }
 
@@ -76,19 +76,19 @@ public class RideView implements Identifiable<Long> {
         this.tripId = tripId;
     }
 
-    public Long getDriverFirstName() {
+    public String getDriverFirstName() {
         return driverFirstName;
     }
 
-    public void setDriverFirstName(Long driverFirstName) {
+    public void setDriverFirstName(String driverFirstName) {
         this.driverFirstName = driverFirstName;
     }
 
-    public Long getDriverLastName() {
+    public String getDriverLastName() {
         return driverLastName;
     }
 
-    public void setDriverLastName(Long driverLastName) {
+    public void setDriverLastName(String driverLastName) {
         this.driverLastName = driverLastName;
     }
 

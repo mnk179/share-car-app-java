@@ -35,6 +35,16 @@ public class DefaultRideService implements RideService {
     private final UserRepository userRepository;
     private final TripRepository tripRepository;
 
+    public void populateRepoWithDummyData() {
+        rideRepository.deleteAll();
+        tripRepository.deleteAll();
+        userRepository.deleteAll();
+
+        userRepository.save(new User("Tom", "Wiemer", "tom.wiemer@hello.com", "+370612904810"));
+        tripRepository.save(new Trip("Alytus->Vilnius", TripStatus.SCHEDULED, LocalDateTime.now(), userRepository.findByEmail("tom.wiemer@hello.com").get(0), new ArrayList<Ride>()));
+        rideRepository.save(new Ride(RideStatus.REQUEST_PENDING, userRepository.findByEmail("tom.wiemer@hello.com").get(0), tripRepository.findByRoute("Alytus->Vilnius").get(0)));
+    }
+
     @Autowired
     public DefaultRideService(RideRepository rideRepository, UserRepository userRepository, TripRepository tripRepository) {
         this.rideRepository = rideRepository;
@@ -44,14 +54,7 @@ public class DefaultRideService implements RideService {
 
     @Override
     public List<LazyRideView> getAll(GetAllRidesQuery getAllQuery) {
-
-        rideRepository.deleteAll();
-        tripRepository.deleteAll();
-        userRepository.deleteAll();
-
-        userRepository.save(new User("Tom", "Wiemer", "tom.wiemer@hello.com", "+370612904810"));
-        tripRepository.save(new Trip("Alytus->Vilnius", TripStatus.SCHEDULED, LocalDateTime.now(), userRepository.findByEmail("tom.wiemer@hello.com").get(0), new ArrayList<Ride>()));
-        rideRepository.save(new Ride(RideStatus.REQUEST_PENDING, userRepository.findByEmail("tom.wiemer@hello.com").get(0), tripRepository.findByRoute("Alytus->Vilnius").get(0)));
+        populateRepoWithDummyData();
 
         final RideStatus status = getAllQuery.getStatus();
         final Long passengerId = getAllQuery.getPassengerId();
@@ -67,11 +70,11 @@ public class DefaultRideService implements RideService {
         }
         return rides.stream()
                 .map(ride -> new LazyRideView(ride.getId(),
-                                    ride.getStatus(),
-                                    ride.getPassenger().getId(),
-                                    ride.getTrip().getId(),
-                                    ride.getTrip().getDriver().getFirstName(),
-                                    ride.getTrip().getDriver().getLastName()))
+                        ride.getStatus(),
+                        ride.getPassenger().getId(),
+                        ride.getTrip().getId(),
+                        ride.getTrip().getDriver().getFirstName(),
+                        ride.getTrip().getDriver().getLastName()))
                 .collect(toList());
     }
 
@@ -102,15 +105,24 @@ public class DefaultRideService implements RideService {
         }
     }
 
-//    @Override
-//    public LazyTaskView add(AddTaskRequest request) {
-//        final TaskView requestTask = request.getTask();
-//        final Task taskEntity = new Task(requestTask.getTitle(),
-//                requestTask.getDescription(),
-//                requestTask.getEndDate(),
-//                requestTask.getStatus(),
-//                requestTask.getPriority());
-//        Task detachedEntity = taskRepository.save(taskEntity);
-//        return new LazyTaskView(detachedEntity.getTaskId());
-//    }
+    @Override
+    public RideView getOne(Long id) {
+        final Optional<Ride> optionalRide = rideRepository.findById(id);
+        if (optionalRide.isPresent()) {
+            Ride ride = optionalRide.get();
+            RideView rideView = new RideView(id,
+                    ride.getStatus(),
+                    ride.getPassenger().getId(),
+                    ride.getPassenger().getFirstName(),
+                    ride.getPassenger().getLastName(),
+                    ride.getTrip().getId(),
+                    ride.getTrip().getDriver().getId(),
+                    ride.getTrip().getDriver().getFirstName(),
+                    ride.getTrip().getDriver().getLastName());
+            return rideView;
+        }
+        else {
+            throw new NotFoundException("Ride with id " + id + " not found");
+        }
+    }
 }

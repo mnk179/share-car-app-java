@@ -5,5 +5,5 @@ import org.springframework.http.ResponseEntity;
 
 public interface GetIdentifier {
 
-    ResponseEntity<? extends ResponseWrapper> getOne(long id);
+    ResponseEntity<? extends ResponseWrapper> getOne(Long id);
 }
