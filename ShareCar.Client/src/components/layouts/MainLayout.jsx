@@ -2,12 +2,12 @@
 import * as React from "react";
 import {Header} from "../Header";
 
-export class MainLayout extends React.Component<{}>{
+export class MainLayout extends React.Component<{}> {
 
-    render(){
+    render() {
         return (
             <div>
-            <Header/>
+                <Header/>
             </div>
         );
     }

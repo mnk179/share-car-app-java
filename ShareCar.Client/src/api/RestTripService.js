@@ -14,6 +14,4 @@ export class RestTripService implements TripService {
         }
         return data.value;
     }
-    
-    asumc getSingle() 
 }

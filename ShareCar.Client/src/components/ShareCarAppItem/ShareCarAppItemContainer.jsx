@@ -1,6 +1,6 @@
 //@flow
 import * as React from "react";
-import {TripStatusInput} from "./TripStatusInput";
+import {TripStatusInput} from "../Trip/TripStatusInput";
 
 type ShareCarAppItemContainerProps = {
 

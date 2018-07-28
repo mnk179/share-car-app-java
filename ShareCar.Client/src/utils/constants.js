@@ -1,10 +1,10 @@
-export const TripStatus = {
-    TRIP_SCHEDULED: "TRIP_SCHEDULED", 
-    TRIP_CANCELLED: "TRIP_CANCELLED", 
-    TRIP_SUCCESSFUL: "TRIP_SUCCESSFUL"
+export const TripStatusValues = {
+    SCHEDULED: "SCHEDULED",
+    CANCELLED: "CANCELLED",
+    SUCCESSFUL: "SUCCESSFUL"
 };
 
-export const RideStatus = {
+export const RideStatusValues = {
     REQUEST_PENDING: "REQUEST_PENDING", 
     REQUEST_ACCEPTED: "REQUEST_ACCEPTED", 
     REQUEST_DECLINED: "REQUEST_DECLINED", 
@@ -12,4 +12,4 @@ export const RideStatus = {
     RIDE_CANCELLED: "RIDE_CANCELLED", 
     RIDE_SUCCESSFUL: "RIDE_SUCCESSFUL", 
     RIDE_REMOVED: "RIDE_REMOVED"
-    };
+};
