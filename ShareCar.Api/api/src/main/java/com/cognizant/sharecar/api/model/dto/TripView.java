@@ -23,12 +23,13 @@ public class TripView implements Identifiable<Long> {
     public TripView() {
     }
 
-    public TripView(Long id, String route, TripStatus status, LocalDateTime dateTime, LazyUserView driver) {
+    public TripView(Long id, String route, TripStatus status, LocalDateTime dateTime, LazyUserView driver, List<Long> rideIdList) {
         this.id = id;
         this.route = route;
         this.status = status;
         this.dateTime = dateTime;
         this.driver = driver;
+        this.rideIdList = rideIdList;
     }
 
     @Override

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -29,8 +30,9 @@ public class TripApi{
     }
 
     @GetMapping
-    public ResponseEntity<List<GetTripResponse>> getAll(@RequestParam(required = false) TripStatus status) {
-        List<TripView> trips = tripService.getAll(new GetAllTripsQuery());
+    public ResponseEntity<List<GetTripResponse>> getAll(@RequestParam(required = false)TripStatus status,
+                                                        @RequestParam(required = false)LocalDate date) {
+        List<TripView> trips = tripService.getAll(new GetAllTripsQuery(status,date));
         List<GetTripResponse> responses = trips
                 .stream()
                 .map(GetTripResponse::new)
