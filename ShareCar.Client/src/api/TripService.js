@@ -3,7 +3,7 @@
 export interface TripService {
     getAll(): Promise<Trip[]>;
     // getSingle(trip: Trip): Promise<Trip>;
-    // add(item: AddTripRequest): Promise<AddTripResponse>;
+    add(item: AddTripRequest): Promise<AddTripResponse>;
 
     // update(id: TodoItemId, payload: UpdateTodoItemRequest): Promise<void>;
     // remove(id: TodoItemId): Promise<void>;

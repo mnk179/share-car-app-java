@@ -14,4 +14,12 @@ export class RestTripService implements TripService {
         }
         return data.value;
     }
+
+    async add(item: AddTripRequest): Promise<AddTripResponse> {
+        const data: ApiResponse<AddTripResponse> = await fetchData("POST", buildUrl(`/trips`), item);
+        if (data.isError) {
+            throw new Error();
+        }
+        return data.value;
+    }
 }

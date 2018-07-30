@@ -16,6 +16,7 @@ class App extends Component<{}> {
                     <Switch>
                         <Route exact path="/" component={MainLayout}/>
                         <Route exact path="/trips" component={() => <TripListLayout tripService={TRIP_SERVICE}/>}/>
+                        <Route exact path="/trips/new" component={() => <TripListLayout tripService={TRIP_SERVICE}/>}/>
                         {/*<Route path="/ride_request" component={RideRequestLayout}/>
                         <Route path="/ride_list_pass" component={RideListPassengerLayout}/>*/}
                     </Switch>

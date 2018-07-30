@@ -32,29 +32,28 @@ export class TripListLayout extends React.Component<TripListLayoutProps, TripLis
             <div>
                 <NavBar/>
                 <div className="trip-container">
-                
-                    <table class="table">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th scope="col" className="trip-description">Marsrutas</th>
-                            <th scope="col" className="trip-description">Laikas</th>
-                            <th scope="col" className="trip-description">Vairuotojas</th>
-                        </tr>
+
+                    <table className="table">
+                        <thead className="thead-dark">
+                            <tr>
+                                <th scope="col">Route</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">Driver</th>
+                            </tr>
                         </thead>
                         <tbody>
-                    
-                    {this.state.trips.map((x, i) =>
-                            <TripContainer
+
+                        {this.state.trips.map((x, i) =>
+                            <TripContainer key={i}
                                 // onFullDataRequest={() => this.props.tripService.getSingle(x)}
                                 trip={x}
-                                key={i}
                                 // onItemUpdate={newData => this.handleUpdate(x.id, newData)}
                                 // onItemRemove={() => this.handleRemove(x.id)}
                                 // onStatusUpdate={newStatus => this.handleStatusUpdate(x.id, newStatus)}
                             />)
-                    }
+                        }
                         </tbody>
-                        </table>
+                    </table>
                 </div>
             </div>
         );

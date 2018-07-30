@@ -7,18 +7,15 @@ div.trip-container {
     border-radius: 10px;
 }
 
-.trip-list-container {
-    padding: 0 40px 10px;
-}
-
-.trip-list-container {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 10px;
-    flex: center;
-    justify-content: center;
-}
+/*.trip-list-container {*/
+    /*padding: 0 40px 10px;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*text-align: center;*/
+    /*margin-bottom: 10px;*/
+    /*flex: center;*/
+    /*justify-content: center;*/
+/*}*/
 
 .trip-description {
     font-size: 18px;
