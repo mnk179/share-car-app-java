@@ -4,7 +4,7 @@ import com.cognizant.sharecar.api.model.dto.RideView;
 import com.cognizant.sharecar.common.spi.model.RideStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class GetRideResponse implements ResponseWrapper {
+public class GetRideResponse {
     private Long id;
     private RideStatus status;
     private Long passengerId;

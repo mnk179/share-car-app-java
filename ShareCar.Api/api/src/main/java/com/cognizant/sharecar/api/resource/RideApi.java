@@ -7,7 +7,6 @@ import com.cognizant.sharecar.api.model.request.AddRideRequest;
 import com.cognizant.sharecar.api.model.request.GetAllRidesQuery;
 import com.cognizant.sharecar.api.model.response.AddRideResponse;
 import com.cognizant.sharecar.api.spi.RideService;
-import com.cognizant.sharecar.api.util.GetIdentifier;
 import com.cognizant.sharecar.common.spi.model.RideStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,7 @@ import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequestMapping(path = "/rides")
-public class RideApi implements GetIdentifier {
+public class RideApi {
 
     @Autowired
     private RideService rideService;

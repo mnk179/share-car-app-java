@@ -3,14 +3,17 @@ package com.cognizant.sharecar.api.resource;
 import com.cognizant.sharecar.api.model.dto.TripView;
 import com.cognizant.sharecar.api.model.request.AddTripRequest;
 import com.cognizant.sharecar.api.model.request.GetAllTripsQuery;
+import com.cognizant.sharecar.api.model.request.UpdateTripQuery;
 import com.cognizant.sharecar.api.model.response.AddTripResponse;
 import com.cognizant.sharecar.api.model.response.GetTripResponse;
 import com.cognizant.sharecar.api.spi.TripService;
 import com.cognizant.sharecar.common.spi.model.TripStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -29,8 +32,10 @@ public class TripApi{
     }
 
     @GetMapping
-    public ResponseEntity<List<GetTripResponse>> getAll(@RequestParam(required = false) TripStatus status) {
-        List<TripView> trips = tripService.getAll(new GetAllTripsQuery());
+    public ResponseEntity<List<GetTripResponse>> getAll(@RequestParam(required = false)TripStatus status,
+                                                        @RequestParam(required = false)Long driverId,
+                                                        @RequestParam(required = false)LocalDate date) {
+        List<TripView> trips = tripService.getAll(new GetAllTripsQuery(status,driverId, date));
         List<GetTripResponse> responses = trips
                 .stream()
                 .map(GetTripResponse::new)
@@ -46,5 +51,12 @@ public class TripApi{
         } catch (Exception exception) {
             throw new InternalServerException("Internal error occurred!");
         }
+    }
+
+    @PutMapping(path = "/{id}")
+    public ResponseEntity update(@PathVariable(name = "id") Long id,
+                                 @RequestBody UpdateTripQuery updateTripQuery){
+        tripService.update(id, updateTripQuery);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }
