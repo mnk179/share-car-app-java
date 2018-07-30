@@ -26,6 +26,11 @@ public class GetAllTripsQuery {
         this.date = date;
     }
 
+    public GetAllTripsQuery(TripStatus status, Long driverId) {
+        this.status = status;
+        this.driverId = driverId;
+    }
+
     public GetAllTripsQuery(TripStatus status, Long driverId, LocalDate date) {
         this.status = status;
         this.driverId = driverId;
