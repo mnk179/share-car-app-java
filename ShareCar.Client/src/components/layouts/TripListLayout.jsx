@@ -3,6 +3,7 @@ import * as React from "react";
 import {NavBar} from "./NavBar";
 import {TripService} from "../../api/TripService";
 import {TripContainer} from "../Trip/TripContainer";
+import "../../styles/TripContainer.css";
 
 type TripListLayoutProps = {
     tripService: TripService
@@ -30,8 +31,15 @@ export class TripListLayout extends React.Component<TripListLayoutProps, TripLis
         return (
             <div>
                 <NavBar/>
-                {
-                    this.state.trips.map((x, i) =>
+                <div className="trip-container">
+                
+                    <div className="trip-list-container">
+                     <span className="trip-description">Marsrutas</span> 
+                     <span className="trip-description">Keliones pradzia</span>  
+                     <span className="trip-description">Vairuotojas</span>    
+                    </div>
+
+                    {this.state.trips.map((x, i) =>
                         <div key={i}>
                             <TripContainer
                                 // onFullDataRequest={() => this.props.tripService.getSingle(x)}
@@ -41,7 +49,7 @@ export class TripListLayout extends React.Component<TripListLayoutProps, TripLis
                                 // onStatusUpdate={newStatus => this.handleStatusUpdate(x.id, newStatus)}
                             />
                         </div>)
-                }
+                }</div>
             </div>
         );
     }
