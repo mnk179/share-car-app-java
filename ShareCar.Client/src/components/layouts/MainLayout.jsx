@@ -1,13 +1,13 @@
 //@flow
 import * as React from "react";
-import {Header} from "../Header";
+import { NavBar } from "./NavBar";
 
 export class MainLayout extends React.Component<{}> {
 
     render() {
         return (
             <div>
-                <Header/>
+                <NavBar/>
             </div>
         );
     }

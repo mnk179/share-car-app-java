@@ -1,0 +1,34 @@
+.NavBar {
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: #4CAF50;
+    align-content: stretch;
+}
+
+.NavBar button {
+    flex: 1 100%;
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    border: none;
+    background-color: #4CAF50;
+    flex-direction: row;
+    margin: auto;
+}
+
+.NavBar button:hover {
+    background-color:black; 
+    color: #ddd;
+}
+
+.NavBar button:active {
+    background-color: #4CAF50;
+    color: white;
+}

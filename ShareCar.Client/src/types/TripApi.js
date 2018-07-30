@@ -7,6 +7,5 @@ type AddTripRequest = {
 };
 
 type AddTripResponse = {
-    id: TripId,
-
+    id: TripId
 };

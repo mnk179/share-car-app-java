@@ -3,7 +3,7 @@
 import { TripStatusValues } from "../utils/constants";
 
 type TripId = number;
-//type DriverId = number;
+type DriverId = number;
 type Route = string;
 type TripStatus = $Keys<typeof TripStatusValues>;
 

@@ -1,6 +1,6 @@
 //@flow
 import * as React from "react";
-import {Header} from "../Header";
+import {NavBar} from "./NavBar";
 import {TripService} from "../../api/TripService";
 import {TripContainer} from "../Trip/TripContainer";
 
@@ -29,7 +29,7 @@ export class TripListLayout extends React.Component<TripListLayoutProps, TripLis
     render() {
         return (
             <div>
-                <Header/>
+                <NavBar/>
                 {
                     this.state.trips.map((x, i) =>
                         <div key={i}>
