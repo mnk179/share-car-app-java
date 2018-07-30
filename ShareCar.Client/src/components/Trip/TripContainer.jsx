@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import Moment from "react-moment";
 
 type TripContainerProps = {
     trip: Trip,
@@ -16,7 +17,8 @@ export class TripContainer extends React.Component<TripContainerProps> {
             <div>
                 <div className="trip-container">
                     <span className="trip-route">{this.props.trip.route}</span>
-                    <span className="trip-time">{this.props.trip.dateTime}</span>
+                    {/*<span className="trip-time">{this.props.trip.dateTime}</span>*/}
+                    <span className="trip-time"><Moment date={this.props.trip.dateTime} format="HH:mm" /></span>
                     <span className="trip-driver-name">{this.props.trip.driver.firstName + " " + this.props.trip.driver.lastName}</span>
                 </div>
             </div>
