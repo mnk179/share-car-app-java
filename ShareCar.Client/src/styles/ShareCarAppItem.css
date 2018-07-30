@@ -2,6 +2,7 @@
     background-color: antiquewhite;
     height: 5vh;
     margin: 5px;
+    border-radius: 10px;
 }
 
 .shareCarApp-item-container span, button {
