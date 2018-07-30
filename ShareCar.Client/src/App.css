@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Chivo:700|Lato:400,400i,700');
+
 .App {
   text-align: center;
 }
@@ -31,7 +33,7 @@ html, body {
   height: 100%;
 }
 
-div.html body {
+html body {
   background: linear-gradient(to bottom right, #edfcff, #dcf6fe);
   font-family: 'Lato', sans-serif;
 }
