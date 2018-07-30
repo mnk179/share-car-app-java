@@ -5,6 +5,7 @@ import "../../styles/TripContainer.css";
 
 type TripContainerProps = {
     trip: Trip,
+    key: number
     // onFullDataRequest: () => Promise<TodoItem>,
     // onItemUpdate: (data: TodoItem) => mixed,
     // onItemRemove: () => mixed,
@@ -15,14 +16,11 @@ export class TripContainer extends React.Component<TripContainerProps> {
 
     render() {
         return (
-            <div>
-                <div className="trip-list-container">
-                    <span className="trip-route">{this.props.trip.route}</span>
-                    {/*<span className="trip-time">{this.props.trip.dateTime}</span>*/}
-                    <span className="trip-time"><Moment date={this.props.trip.dateTime} format="HH:mm" /></span>
-                    <span className="trip-driver-name">{this.props.trip.driver.firstName + " " + this.props.trip.driver.lastName}</span>
-                </div>
-            </div>
+            <tr className="trip-list-container" key={this.props.key}>
+                    <td className="trip-route">{this.props.trip.route}</td>
+                    <td className="trip-time"><Moment date={this.props.trip.dateTime} format="HH:mm" /></td>
+                    <td className="trip-driver-name">{this.props.trip.driver.firstName + " " + this.props.trip.driver.lastName}</td>
+            </tr>
         );
     }
 }
