@@ -1,29 +1,19 @@
 // @flow
 import * as React from "react";
 import { NewTripForm } from "../Trip/NewTripForm";
+import {TripService} from "../../api/TripService";
 
-type NewTodoItemProps = {
-    onInsert: (data: TodoItem) => mixed
+type TripAddLayoutProps = {
+    tripService: TripService
 };
 
-type NewTodoItemState = {
-    isOpen: boolean
-};
 
-export class NewTodoItem extends React.Component<NewTodoItemProps, NewTodoItemState> {
-    state = {
-        isOpen: false
-    };
+export class TripAddLayout extends React.Component<TripAddLayoutProps> {
+
     render(){
         return(
             <div>
-                <button onClick={() => this.setState({isOpen: !this.state.isOpen})}>Add new task</button>
-                {
-                    this.state.isOpen
-                        ? <TodoItemForm
-                            onUpdate={this.props.onInsert}/>
-                        : ""
-                }
+                <NewTripForm tripService={this.props.tripService}/>
             </div>
         );
     }
