@@ -21,6 +21,12 @@ public class Ride {
     public Ride() {
     }
 
+    public Ride(RideStatus status, User passenger, Trip trip) {
+        this.status = status;
+        this.passenger = passenger;
+        this.trip = trip;
+    }
+
     public Long getId() {
         return id;
     }

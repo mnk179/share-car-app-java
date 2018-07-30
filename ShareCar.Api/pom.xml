@@ -28,6 +28,7 @@
         <start-class>com.cognizant.sharecar.ShareCarApp</start-class>
     </properties>
 
+
     <build>
         <resources>
             <resource>
