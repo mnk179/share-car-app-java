@@ -2,6 +2,7 @@
 
 export interface TripService {
     getAll(): Promise<Trip[]>;
+    getListByDate(date: DateTime): Promise<Trip[]>;
     // getSingle(trip: Trip): Promise<Trip>;
     add(item: AddTripRequest): Promise<AddTripResponse>;
 
