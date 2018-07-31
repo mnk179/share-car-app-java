@@ -9,6 +9,7 @@ import com.cognizant.sharecar.api.model.response.GetTripResponse;
 import com.cognizant.sharecar.api.spi.TripService;
 import com.cognizant.sharecar.common.spi.model.TripStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,8 @@ public class TripApi{
     @GetMapping
     public ResponseEntity<List<GetTripResponse>> getAll(@RequestParam(required = false)TripStatus status,
                                                         @RequestParam(required = false)Long driverId,
-                                                        @RequestParam(required = false)LocalDate date) {
+                                                        @RequestParam(required = false)
+                                                            @DateTimeFormat(pattern="yyyy-MM-dd")LocalDate date) {
         List<TripView> trips = tripService.getAll(new GetAllTripsQuery(status,driverId, date));
         List<GetTripResponse> responses = trips
                 .stream()

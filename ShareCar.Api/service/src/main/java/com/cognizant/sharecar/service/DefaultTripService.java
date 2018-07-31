@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -42,7 +44,16 @@ public class DefaultTripService implements TripService {
         final Long driverId = getAllTripsQuery.getDriverId();
         final LocalDate date = getAllTripsQuery.getDate();
 
-        return tripRepository.findAll()
+        List<Trip> result = new ArrayList<>();
+
+        //TODO filter by status and driverId
+        if(date == null & status == null && driverId == null)
+            result = tripRepository.findAll();
+        else if(date != null){
+            result = tripRepository.findByDateTimeBetween(date.atStartOfDay(), date.atTime(LocalTime.MAX));
+        }
+
+        return result
                 .stream()
                 .map(TripMapper::mapEntityToView)
                 .collect(toList());
