@@ -1,6 +1,6 @@
 //@flow
 import * as React from "react";
-import {NavBar} from "./NavBar";
+import {NavBar} from "../NavigationBar/NavBar";
 import {TripService} from "../../api/TripService";
 import {TripContainer} from "../Trip/TripContainer";
 import "../../styles/TripContainer.css";

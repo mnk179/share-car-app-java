@@ -2,7 +2,7 @@
 import * as React from "react";
 import { TripSearchForm } from "../Trip/TripSearchForm";
 import {TripService} from "../../api/TripService";
-import { NavBar } from "./NavBar";
+import { NavBar } from "../NavigationBar/NavBar";
 
 type TripSearchLayoutProps = {
     tripService: TripService
