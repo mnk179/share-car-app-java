@@ -46,15 +46,13 @@ public class DefaultTripService implements TripService {
 
         List<Trip> result = new ArrayList<>();
 
-        //TODO filter by status and driverId
+        //TODO find by status and driverId
         if(date == null & status == null && driverId == null)
             result = tripRepository.findAll();
-        else if(date != null){
+        else if(date != null)
             result = tripRepository.findByDateTimeBetween(date.atStartOfDay(), date.atTime(LocalTime.MAX));
-        }
 
-        return result
-                .stream()
+        return result.stream()
                 .map(TripMapper::mapEntityToView)
                 .collect(toList());
     }

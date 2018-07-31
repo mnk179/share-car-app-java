@@ -2,7 +2,6 @@ package com.cognizant.sharecar.api.model.response;
 
 import com.cognizant.sharecar.api.model.dto.RideView;
 import com.cognizant.sharecar.common.spi.model.RideStatus;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class GetRideResponse {
     private Long id;
@@ -27,8 +26,7 @@ public class GetRideResponse {
         this.driverLastName = rideView.getDriverLastName();
     }
 
-    @JsonProperty("id")
-    public Long getTaskId() {
+    public Long getId() {
         return id;
     }
 

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TripView implements Identifiable<Long> {
+public class TripView{
 
     private Long id;
     private String route;
@@ -32,7 +32,6 @@ public class TripView implements Identifiable<Long> {
         this.rideIdList = rideIdList;
     }
 
-    @Override
     public Long getId() {
         return id;
     }

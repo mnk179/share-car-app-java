@@ -38,8 +38,7 @@ public class TripApi{
                                                         @RequestParam(required = false)
                                                             @DateTimeFormat(pattern="yyyy-MM-dd")LocalDate date) {
         List<TripView> trips = tripService.getAll(new GetAllTripsQuery(status,driverId, date));
-        List<GetTripResponse> responses = trips
-                .stream()
+        List<GetTripResponse> responses = trips.stream()
                 .map(GetTripResponse::new)
                 .collect(toList());
 

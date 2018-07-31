@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface RideService {
 
-    List<LazyRideView> getAll(GetAllRidesQuery getAllQuery);
+    List<LazyRideView> getAll(GetAllRidesQuery getAllRidesQueryQuery);
 
-    LazyRideView add(AddRideRequest ride);
+    Long add(AddRideRequest addRideRequest);
 
     RideView getOne(Long id);
 }

@@ -1,33 +1,31 @@
 package com.cognizant.sharecar.api.model.response;
 
+import com.cognizant.sharecar.api.model.dto.LazyRideView;
 import com.cognizant.sharecar.common.spi.model.RideStatus;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.hateoas.ResourceSupport;
 
-public class GetRideLazyResponse extends ResourceSupport {
-    private Long rideId;
+public class GetRideLazyResponse{
+    private Long id;
     private RideStatus status;
     private Long passengerId;
     private Long tripId;
     private String driverFirstName;
     private String driverLastName;
 
-    public GetRideLazyResponse(Long rideId, RideStatus status, Long passengerId, Long tripId, String driverFirstName, String driverLastName) {
-        this.rideId = rideId;
-        this.status = status;
-        this.passengerId = passengerId;
-        this.tripId = tripId;
-        this.driverFirstName = driverFirstName;
-        this.driverLastName = driverLastName;
+    public GetRideLazyResponse(LazyRideView ride){
+        this.id = ride.getId();
+        this.status = ride.getStatus();
+        this.passengerId = ride.getPassengerId();
+        this.tripId = ride.getTripId();
+        this.driverFirstName = ride.getDriverFirstName();
+        this.driverLastName = ride.getDriverLastName();
     }
 
-    @JsonProperty("id")
-    public Long getRideIdId() {
-        return rideId;
+    public Long getId() {
+        return id;
     }
 
-    public void setId(Long rideId) {
-        this.rideId = rideId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public RideStatus getStatus() {

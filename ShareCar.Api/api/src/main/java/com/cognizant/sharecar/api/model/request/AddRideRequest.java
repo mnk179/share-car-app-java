@@ -1,7 +1,5 @@
 package com.cognizant.sharecar.api.model.request;
 
-import com.cognizant.sharecar.api.model.dto.RideView;
-
 public class AddRideRequest {
 
     private Long passengerId;

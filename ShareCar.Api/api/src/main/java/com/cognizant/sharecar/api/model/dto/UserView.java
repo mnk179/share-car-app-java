@@ -5,7 +5,7 @@ import org.springframework.hateoas.Identifiable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserView implements Identifiable<Long> {
+public class UserView{
 
     private Long id;
     private String firstName;
@@ -29,7 +29,6 @@ public class UserView implements Identifiable<Long> {
         this.rides = rides;
     }
 
-    @Override
     public Long getId() {
         return id;
     }

@@ -1,9 +1,8 @@
 package com.cognizant.sharecar.api.model.dto;
 
 import com.cognizant.sharecar.common.spi.model.RideStatus;
-import org.springframework.hateoas.Identifiable;
 
-public class LazyRideView implements Identifiable<Long> {
+public class LazyRideView{
 
     private Long id;
     private RideStatus status;
@@ -22,7 +21,6 @@ public class LazyRideView implements Identifiable<Long> {
         this.driverLastName = driverLastName;
     }
 
-    @Override
     public Long getId() {
         return id;
     }
