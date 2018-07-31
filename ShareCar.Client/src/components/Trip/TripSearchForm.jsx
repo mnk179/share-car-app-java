@@ -42,7 +42,8 @@ export class TripSearchForm extends React.Component<TripSearchFormProps, TripSea
                     selectedDays={this.state.selectedDay}
                     onDayClick={this.handleDayClick.bind(this)}
                 />
-                <Link to="trips" params={{ date: this.state.selectedDay.toISOString().slice(0, 10) }}><button>Search</button></Link>
+                { console.log("selectedDay sliced "+ this.state.selectedDay.toISOString().slice(0, 10)) }
+                <Link to={"/trips/" + this.state.selectedDay.toISOString().slice(0, 10)}><button>Search</button></Link>
             </div>
             // </form>
         );

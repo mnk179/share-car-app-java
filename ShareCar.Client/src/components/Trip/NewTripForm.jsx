@@ -16,7 +16,7 @@ export class NewTripForm extends React.Component<NewTripFormProps, NewTripFormSt
     constructor(props: any) {
         super(props);
         this.state = {
-            selectedDay: null,
+            selectedDay: new Date(),
         };
     }
     handleDayClick(day: Date, { selected }) {
@@ -30,7 +30,7 @@ export class NewTripForm extends React.Component<NewTripFormProps, NewTripFormSt
             route: e.target.route.value,
             dateTime: this.state.selectedDay
                             .setHours(e.target.timeOfDay.value.slice(0,2), e.target.timeOfDay.value.slice(3))
-                            .toISOString,
+                            .toISOString(),
             driverId: e.target.driverId.value
         };
         console.log(payload.dateTime);
@@ -38,19 +38,24 @@ export class NewTripForm extends React.Component<NewTripFormProps, NewTripFormSt
     }
     render(){
         return(
-            <form onSubmit={this.handleSubmit.bind(this)}>
-                <label for="route">Route:</label><input type="text" name="route"/>
-                <br/>
+            <form id="new-trip-form" onSubmit={this.handleSubmit.bind(this)}>
+                <div className="form-group">
+                    <label htmlFor="route">Route</label>
+                    <input type="text" className="form-control" name="route"/>
+                </div>
                 <DayPicker
                     selectedDays={this.state.selectedDay}
                     onDayClick={this.handleDayClick.bind(this)}
-                />
-                <br/>
-                <label for="timeOfDay">Time:</label><input type="text" name="timeOfDay" defaultValue="08:00"/>
-                <br/>
-                <label for="driverId">DriverId:</label><input type="text" name="driverId"/>
-                <br/>
-                <button>Save</button>
+                />     
+                <div className="form-group">
+                    <label htmlFor="timeOfDay">Time</label>
+                    <input type="text" className="form-control" name="timeOfDay" defaultValue="08:00"/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="driverId">DriverId</label>
+                    <input type="text" className="form-control" name="driverId"/>
+                </div>
+                <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         );
     }

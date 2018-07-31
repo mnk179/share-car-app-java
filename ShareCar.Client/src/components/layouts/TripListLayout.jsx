@@ -6,23 +6,23 @@ import {TripContainer} from "../Trip/TripContainer";
 import "../../styles/TripContainer.css";
 
 type TripListLayoutProps = {
-    tripService: TripService
+    tripService: TripService,
+    match: any
 };
 
 type TripListLayoutState = {
     isLoading: boolean,
     trips: Trip[]
-}
+};
 
 export class TripListLayout extends React.Component<TripListLayoutProps, TripListLayoutState> {
-
     state = {
         isLoading: true,
         trips: []
     };
-
     async componentDidMount() {
-        const data = await this.props.tripService.getAll();
+        console.log("date " + this.props.match.params.date);
+        const data = await this.props.tripService.getAll(this.props.match.params.date);
         await new Promise(resolve => setTimeout(resolve, 1000)); //sleep 1000ms
         this.setState({isLoading: false, trips: data});
     }
