@@ -1,19 +1,16 @@
 //@flow
 import * as React from "react";
 import "../../styles/NavBar.css";
-import { ProfileButton } from "../NavigationBar/ProfileButton";
-import { TripListButton } from "../NavigationBar/TripListButton";
-import { RidesButton } from "../NavigationBar/RidesButton";
-import { ChangeRoleButton } from "../NavigationBar/ChangeRoleButton";
+import { Link } from "react-router-dom";
 
 export class NavBar extends React.Component<{}> {
     render() {
         return (
             <div className="NavBar">
-            <ProfileButton/>
-            <TripListButton/>
-            <RidesButton/>
-            <ChangeRoleButton/>
+            <button className="button">Profile</button>
+            <Link to="/trips"><button className="button">Routes map</button></Link>
+            <button className="button">Rides</button>
+            <button className="button">Change role</button>
             </div>
         );
     }
