@@ -2,7 +2,7 @@
 import * as React from "react";
 import "../../styles/NavBar.css";
 import { ProfileButton } from "../ShareCarAppItem/ProfileButton";
-import { TripSearchButton } from "../ShareCarAppItem/TripSearchButton";
+import { TripListButton } from "../ShareCarAppItem/TripListButton";
 import { RidesButton } from "../ShareCarAppItem/RidesButton";
 import { ChangeRoleButton } from "../ShareCarAppItem/ChangeRoleButton";
 
@@ -11,7 +11,7 @@ export class NavBar extends React.Component<{}> {
         return (
             <div className="NavBar">
             <ProfileButton/>
-            <TripSearchButton/>
+            <TripListButton/>
             <RidesButton/>
             <ChangeRoleButton/>
             </div>

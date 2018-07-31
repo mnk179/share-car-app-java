@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-export class TripSearchButton extends React.Component {
+export class TripListButton extends React.Component {
     render(){
         return(
             <div>
