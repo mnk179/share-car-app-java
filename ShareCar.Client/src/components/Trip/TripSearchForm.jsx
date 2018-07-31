@@ -4,6 +4,7 @@ import type {TripService} from "../../api/TripService";
 import DayPicker from "react-day-picker";
 import "react-day-picker/lib/style.css";
 import { Link } from "react-router-dom";
+import "../../styles/TripSearchForm.css";
 
 type TripSearchFormProps = {
     tripService: TripService
@@ -37,8 +38,8 @@ export class TripSearchForm extends React.Component<TripSearchFormProps, TripSea
     render(){
         return(
             // <form onSubmit={this.handleSubmit.bind(this)}>
-            <div>
-                <DayPicker
+            <div className="trip-search-container">
+                <DayPicker className="trip-search-child"
                     selectedDays={this.state.selectedDay}
                     onDayClick={this.handleDayClick.bind(this)}
                 />
