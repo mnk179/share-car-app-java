@@ -15,6 +15,14 @@ export class RestTripService implements TripService {
         return data.value;
     }
 
+    async getListByDate(date: DateTime): Promise<Trip[]> {
+        const data: ApiResponse<Trip[]> = await fetchData("GET", buildUrl("/trips?date=" + date));
+        if (data.isError) {
+            throw new Error(); // TODO: better error handling
+        }
+        return data.value;
+    }
+
     async add(item: AddTripRequest): Promise<AddTripResponse> {
         const data: ApiResponse<AddTripResponse> = await fetchData("POST", buildUrl(`/trips`), item);
         if (data.isError) {
