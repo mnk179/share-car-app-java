@@ -8,6 +8,7 @@ import com.cognizant.sharecar.api.spi.TripService;
 import com.cognizant.sharecar.common.spi.model.TripStatus;
 import com.cognizant.sharecar.repository.entity.Trip;
 import com.cognizant.sharecar.repository.entity.User;
+import com.cognizant.sharecar.repository.specifications.TripSpecifications;
 import com.cognizant.sharecar.repository.spi.TripRepository;
 import com.cognizant.sharecar.service.exception.NotFoundException;
 import com.cognizant.sharecar.service.utils.TripMapper;
@@ -25,6 +26,7 @@ import static java.util.stream.Collectors.toList;
 public class DefaultTripService implements TripService {
 
     private final TripRepository tripRepository;
+    private final TripSpecifications spec = new TripSpecifications();
 
     @Autowired
     public DefaultTripService(TripRepository tripRepository) {
@@ -44,15 +46,10 @@ public class DefaultTripService implements TripService {
         final Long driverId = getAllTripsQuery.getDriverId();
         final LocalDate date = getAllTripsQuery.getDate();
 
-        List<Trip> result = new ArrayList<>();
-
-        //TODO find by status and driverId
-        if(date == null & status == null && driverId == null)
-            result = tripRepository.findAll();
-        else if(date != null)
-            result = tripRepository.findByDateTimeBetween(date.atStartOfDay(), date.atTime(LocalTime.MAX));
-
-        return result.stream()
+        return tripRepository.findAll(spec.tripsFilteredByDate(date)
+                .and(spec.tripsFilteredByStatus(status))
+                .and(spec.tripsFilteredByDriverId(driverId)))
+                .stream()
                 .map(TripMapper::mapEntityToView)
                 .collect(toList());
     }
