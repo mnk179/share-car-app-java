@@ -13,11 +13,10 @@
 
 .bottom-navbar-button {
     flex: 1;
-    float: center;
     text-align: center;
     padding: 10px;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 12px;
     border: none;
     background-color: transparent;
     color: white;

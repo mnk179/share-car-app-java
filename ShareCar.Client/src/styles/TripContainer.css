@@ -20,15 +20,13 @@ div.trip-container {
 /*}*/
 
 .trip-description {
-    font-size: 15px;
-    font-weight: 800;
-    padding: 0 40px 10px;  
-    color: black;
+    font-size: 14px;
+    font-weight: 800;  
     letter-spacing: 0.5px;
 }
 
 .trip-route {
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 800;
     padding: 0 40px 10px; 
     color: black; 
@@ -36,7 +34,7 @@ div.trip-container {
 }
 
 .trip-time {
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 800;
     padding: 0 40px 10px;  
     color: black;
@@ -44,7 +42,7 @@ div.trip-container {
 }
 
 .trip-driver-name {
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 800;
     padding: 0 40px 10px;  
     color: black;

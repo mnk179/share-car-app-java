@@ -36,9 +36,9 @@ export class TripListLayout extends React.Component<TripListLayoutProps, TripLis
                     <table className="table">
                         <thead className="thead-dark">
                             <tr>
-                                <th scope="col">Route</th>
-                                <th scope="col">Time</th>
-                                <th scope="col">Driver</th>
+                                <th scope="col" className="trip-description">Route</th>
+                                <th scope="col"className="trip-description">Time</th>
+                                <th scope="col"className="trip-description">Driver</th>
                             </tr>
                         </thead>
                         <tbody>
