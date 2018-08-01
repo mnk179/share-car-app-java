@@ -9,13 +9,15 @@ export class UserContainer extends React.Component<UserContainerProps>{
     render() {
         return (
             <div>
-                {this.props.user.firstName;
-                this.props.user.lastName;
-                this.props.user.email;
-                this.props.user.phoneNo;
-                this.props.user.trips;
-                this.props.user.rides;}
+            <div>
+                {this.props.user.firstName}
             </div>
+            <div>
+            {this.props.user.lastName}
+            </div>
+                <div>{this.props.user.email}</div>
+                <div>{this.props.user.phoneNo}</div>
+                </div>
         );
     }
 }
