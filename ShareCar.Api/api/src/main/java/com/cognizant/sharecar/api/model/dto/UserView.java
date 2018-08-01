@@ -1,7 +1,5 @@
 package com.cognizant.sharecar.api.model.dto;
 
-import org.springframework.hateoas.Identifiable;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,14 +17,12 @@ public class UserView{
     public UserView() {
     }
 
-    public UserView(Long id, String firstName, String lastName, String email, String phoneNo, List<TripView> trips, List<LazyRideView> rides) {
+    public UserView(Long id, String firstName, String lastName, String email, String phoneNo) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNo = phoneNo;
-        this.trips = trips;
-        this.rides = rides;
     }
 
     public Long getId() {
