@@ -6,6 +6,7 @@ div.trip-container {
     box-shadow: 0 10px 30px rgba(136, 136, 136, 0.356);
     border-radius: 10px;
     font-family: 'Open Sans', sans-serif;
+    flex-direction: column;
 
 }
 
@@ -18,9 +19,14 @@ div.trip-container {
     /*flex: center;*/
     /*justify-content: center;*/
 /*}*/
+.trip-list-container{
+    position: relative;
+ 
+}
+
 
 .trip-description {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 800;
     padding: 0 40px 10px;  
     color: black;
@@ -28,7 +34,7 @@ div.trip-container {
 }
 
 .trip-route {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 800;
     padding: 0 40px 10px; 
     color: black; 
@@ -36,7 +42,7 @@ div.trip-container {
 }
 
 .trip-time {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 800;
     padding: 0 40px 10px;  
     color: black;
@@ -44,7 +50,7 @@ div.trip-container {
 }
 
 .trip-driver-name {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 800;
     padding: 0 40px 10px;  
     color: black;
