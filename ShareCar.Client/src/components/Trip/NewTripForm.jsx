@@ -16,21 +16,20 @@ export class NewTripForm extends React.Component<NewTripFormProps, NewTripFormSt
     constructor(props: any) {
         super(props);
         this.state = {
-            selectedDay: new Date(),
+            selectedDate: new Date()
         };
     }
     handleDayClick(day: Date, { selected }) {
         this.setState({
-            selectedDay: selected ? undefined : day,
+            selectedDate: selected ? undefined : day,
         });
     }
     async handleSubmit(e: any) {
         e.preventDefault();
+        this.state.selectedDate.setHours(e.target.timeOfDay.value.slice(0,2), e.target.timeOfDay.value.slice(3));
         const payload = {
             route: e.target.route.value,
-            dateTime: this.state.selectedDay
-                            .setHours(e.target.timeOfDay.value.slice(0,2), e.target.timeOfDay.value.slice(3))
-                            .toISOString(),
+            dateTime: this.state.selectedDate.toISOString(),
             driverId: e.target.driverId.value
         };
         console.log(payload.dateTime);
