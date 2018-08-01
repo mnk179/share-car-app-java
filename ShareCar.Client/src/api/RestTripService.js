@@ -7,18 +7,32 @@ const API_URL = "http://localhost:9001/api";
 const buildUrl = (path: string) => API_URL + path;
 
 export class RestTripService implements TripService {
-    async getAll(): Promise<Trip[]> {
-        const data: ApiResponse<Trip[]> = await fetchData("GET", buildUrl("/trips"));
+    async getAll(date: DateString): Promise<Trip[]> {
+        var data: ApiResponse<Trip[]> = null;
+        if (date === undefined) {
+            data = await fetchData("GET", buildUrl("/trips"));
+        }
+        else {
+            data = await fetchData("GET", buildUrl("/trips?date=" + date));
+        }
         if (data.isError) {
             throw new Error(); // TODO: better error handling
         }
         return data.value;
     }
 
-    async getListByDate(date: DateTime): Promise<Trip[]> {
-        const data: ApiResponse<Trip[]> = await fetchData("GET", buildUrl("/trips?date=" + date));
+    // async getListByDate(date: DateTime): Promise<Trip[]> {
+    //     const data: ApiResponse<Trip[]> = await fetchData("GET", buildUrl("/trips?date=" + date));
+    //     if (data.isError) {
+    //         throw new Error(); // TODO: better error handling
+    //     }
+    //     return data.value;
+    // }
+
+    async getSingle(tripId: tripId): Promise<Trip> {
+        const data: ApiResponse<Trip> = await fetchData("GET", buildUrl("/trips/" + tripId));
         if (data.isError) {
-            throw new Error(); // TODO: better error handling
+            throw new Error();
         }
         return data.value;
     }

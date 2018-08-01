@@ -1,13 +1,13 @@
 //@flow
 import * as React from "react";
-import { NavBar } from "./NavBar";
+import { NavBar } from "../NavigationBar/NavBar";
 
 export class MainLayout extends React.Component<{}> {
 
     render() {
         return (
             <div>
-                <NavBar/>
+                <NavBar links=""/>
             </div>
         );
     }

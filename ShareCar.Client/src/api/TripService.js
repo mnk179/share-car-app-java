@@ -1,9 +1,9 @@
 // @flow
 
 export interface TripService {
-    getAll(): Promise<Trip[]>;
-    getListByDate(date: DateTime): Promise<Trip[]>;
-    // getSingle(trip: Trip): Promise<Trip>;
+    getAll(date: DateString): Promise<Trip[]>;
+    // getListByDate(date: DateTime): Promise<Trip[]>;
+    getSingle(tripId: TripId): Promise<Trip>;
     add(item: AddTripRequest): Promise<AddTripResponse>;
 
     // update(id: TodoItemId, payload: UpdateTodoItemRequest): Promise<void>;

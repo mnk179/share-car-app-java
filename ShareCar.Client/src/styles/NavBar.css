@@ -1,19 +1,19 @@
-.NavBar {
+.bottom-navbar {
     overflow: hidden;
     position: fixed;
     bottom: 0;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     background-color: black;
     align-content: stretch;
     background: black;
+    flex-direction: row;
 }
 
-.NavBar button {
-    flex: 1 100%;
-    float: left;
-    display: block;
+.bottom-navbar-button {
+    flex: 1;
+    float: center;
     text-align: center;
     padding: 10px;
     text-decoration: none;
@@ -21,17 +21,11 @@
     border: none;
     background-color: transparent;
     color: white;
-    flex-direction: row;
     margin: auto;
     font-family: 'Lato', sans-serif;
 }
 
-.NavBar button:hover {
+.bottom-navbar-button:hover {
     background-color:white; 
-    color: black;
-}
-
-.NavBar button:active {
-    background-color: white;
     color: black;
 }

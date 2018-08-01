@@ -1,0 +1,12 @@
+.trip-search-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+.trip-search-child {
+    margin: auto;
+    align-self: center;
+}
