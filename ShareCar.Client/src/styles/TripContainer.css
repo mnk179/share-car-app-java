@@ -6,6 +6,7 @@ div.trip-container {
     box-shadow: 0 10px 30px rgba(136, 136, 136, 0.356);
     border-radius: 10px;
     font-family: 'Open Sans', sans-serif;
+    flex-direction: column;
 
 }
 
@@ -18,15 +19,31 @@ div.trip-container {
     /*flex: center;*/
     /*justify-content: center;*/
 /*}*/
+.trip-list-container{
+    position: relative;
+ 
+}
+
 
 .trip-description {
+<<<<<<< HEAD
     font-size: 14px;
     font-weight: 800;  
+=======
+    font-size: 13px;
+    font-weight: 800;
+    padding: 0 40px 10px;  
+    color: black;
+>>>>>>> 106933fc31d3001a55dd42a85584b302091e9615
     letter-spacing: 0.5px;
 }
 
 .trip-route {
+<<<<<<< HEAD
     font-size: 12px;
+=======
+    font-size: 13px;
+>>>>>>> 106933fc31d3001a55dd42a85584b302091e9615
     font-weight: 800;
     padding: 0 40px 10px; 
     color: black; 
@@ -34,7 +51,11 @@ div.trip-container {
 }
 
 .trip-time {
+<<<<<<< HEAD
     font-size: 12px;
+=======
+    font-size: 13px;
+>>>>>>> 106933fc31d3001a55dd42a85584b302091e9615
     font-weight: 800;
     padding: 0 40px 10px;  
     color: black;
@@ -42,7 +63,11 @@ div.trip-container {
 }
 
 .trip-driver-name {
+<<<<<<< HEAD
     font-size: 12px;
+=======
+    font-size: 13px;
+>>>>>>> 106933fc31d3001a55dd42a85584b302091e9615
     font-weight: 800;
     padding: 0 40px 10px;  
     color: black;

@@ -4,14 +4,15 @@ import com.cognizant.sharecar.api.model.dto.LazyUserView;
 import com.cognizant.sharecar.api.model.dto.TripView;
 import com.cognizant.sharecar.common.spi.model.TripStatus;
 
-import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 public class GetTripResponse {
     private Long id;
     private String route;
     private TripStatus status;
-    private LocalDateTime dateTime;
+    private ZonedDateTime dateTime;
     private LazyUserView driver;
     private List<Long> rideIdList;
 
@@ -19,7 +20,7 @@ public class GetTripResponse {
         this.id = trip.getId();
         this.route = trip.getRoute();
         this.status = trip.getStatus();
-        this.dateTime = trip.getDateTime();
+        this.dateTime = ZonedDateTime.of(trip.getDateTime(), ZoneId.of("Z"));
         this.driver = trip.getDriver();
         this.rideIdList = trip.getRideIdList();
     }
@@ -46,11 +47,11 @@ public class GetTripResponse {
 
     public void setStatus(TripStatus status) { this.status = status; }
 
-    public LocalDateTime getDateTime() {
+    public ZonedDateTime getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+    public void setDateTime(ZonedDateTime dateTime) {
         this.dateTime = dateTime;
     }
 
