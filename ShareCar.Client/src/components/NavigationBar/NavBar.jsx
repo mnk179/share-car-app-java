@@ -8,7 +8,7 @@ export class NavBar extends React.Component<{}> {
         return (
             <div className="bottom-navbar">
             <button className="bottom-navbar-button">Profile</button>
-            <Link className="bottom-navbar-button" role="button" to="/trips">Routes map</Link>
+            <Link className="bottom-navbar-button" role="button" to="/trips/search">Routes map</Link>
             <button className="bottom-navbar-button">Rides</button>
             <button className="bottom-navbar-button">Change role</button>
             </div>

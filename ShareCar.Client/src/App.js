@@ -20,10 +20,10 @@ class App extends Component<{}> {
                         {/*<Route path="/ride_request" component={RideRequestLayout}/>
                         <Route path="/ride_list_pass" component={RideListPassengerLayout}/>*/}
                         <Route name="main" exact path="/" component={MainLayout}/>
+                        <Route name="trip_details" exact path="/trips/details/:id" component={props => <TripDetailsLayout {...props} tripService={TRIP_SERVICE}/>}/>
                         <Route name="trip_search" exact path="/trips/search" component={() => <TripSearchLayout tripService={TRIP_SERVICE}/>}/>
                         <Route name="new_trip" exact path="/trips/new" component={() => <TripAddLayout tripService={TRIP_SERVICE}/>}/>
                         <Route name="trips" path="/trips/:date?" render={props => <TripListLayout {...props} tripService={TRIP_SERVICE}/>}/>
-                        <Route name="trip_details" exact path="/trips/details" component={() => <TripDetailsLayout tripService={TRIP_SERVICE}/>}/>
                     </Switch>
                 </Router>
             </div>
