@@ -7,7 +7,7 @@ export class MainLayout extends React.Component<{}> {
     render() {
         return (
             <div>
-                <NavBar links=""/>
+                <NavBar/>
             </div>
         );
     }
