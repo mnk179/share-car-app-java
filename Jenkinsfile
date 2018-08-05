@@ -5,15 +5,15 @@ pipeline {
     stages {
         stage ('Build') {
             agent {
-				docker {
-					image 'maven:3.5-jdk-10-slim'
-				}
-			}
+		docker {
+		   image 'maven:3.5-jdk-10-slim'
+		}
+	    }
             steps {
                 sh 'mvn -B -DskipTests -f ShareCar.Api/pom.xml clean package' 
             }
         }    
-	stage('Docker Build') {
+	stage('Deploy') {
             agent any
             steps {
                 sh 'docker build -t sharecarapp .'
