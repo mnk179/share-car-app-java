@@ -4,11 +4,11 @@ pipeline {
    
     stages {
         stage ('Build') {
-            agent {
-		docker {
-		   image 'maven:3.5-jdk-10-slim'
-		}
-	    }
+            agent none
+	    tools {
+        	maven 'maven-3.5.4'
+        	jdk 'jdk10'
+    	    }
             steps {
                 sh 'mvn -B -DskipTests -f ShareCar.Api/pom.xml clean package' 
             }
