@@ -13,6 +13,9 @@ pipeline {
             }
         }    
 	stage('Deploy') {
+	    tools {
+		docker 'docker'
+	    }
             steps {
                 sh 'docker build -t sharecarapp .'
              }
