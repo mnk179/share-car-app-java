@@ -14,7 +14,10 @@ pipeline {
         }    
 	stage('Deploy') {
             steps {
+		sh 'docker stop sharecar-java'
+		sh 'docker rm sharecar-java'    
                 sh 'docker build -t sharecarapp .'
+		sh 'docker run --name sharecar-java -d sharecarapp'    
              }
         }
       
