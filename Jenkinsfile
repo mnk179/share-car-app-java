@@ -13,7 +13,9 @@ pipeline {
             }
         }    
 	stage('Deploy') {
-	    agent { dockerfile true }
+	    tools {
+		DockerTool 'docker'
+	    }
             steps {
                 sh 'docker build -t sharecarapp .'
              }
