@@ -19,7 +19,7 @@ public class SecurityConfiguration {
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
-        FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
+        FilterRegistrationBean bean = new FilterRegistrationBean<>(new CorsFilter(source));
         bean.setOrder(0);
         return bean;
     }
