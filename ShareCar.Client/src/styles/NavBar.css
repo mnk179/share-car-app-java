@@ -1,0 +1,30 @@
+.bottom-navbar {
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    align-content: stretch;
+    background: black;
+    flex-direction: row;
+}
+
+.bottom-navbar-button {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 12px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    margin: auto;
+    font-family: 'Lato', sans-serif;
+}
+
+.bottom-navbar-button:hover {
+    background-color:white; 
+    color: black;
+}

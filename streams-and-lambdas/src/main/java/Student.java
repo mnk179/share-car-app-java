@@ -1,5 +1,7 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Stream;
@@ -13,6 +15,7 @@ public class Student {
     private String surname;
     private LocalDate graduationDate;
     private Map<Subject, Integer> grades;
+    private List<String> phoneNumber = new ArrayList<>();
 
     public Student(long studentId, String name, String surname, LocalDate graduationDate) {
         this.studentId = studentId;
@@ -61,6 +64,15 @@ public class Student {
 
     public void setGrades(Map<Subject, Integer> grades) {
         this.grades = grades;
+    }
+
+
+    public List<String> getPhoneNumbers() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(List<String> phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override

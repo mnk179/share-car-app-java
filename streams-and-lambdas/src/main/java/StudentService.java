@@ -1,15 +1,16 @@
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 
 public interface StudentService {
 
-    Student getFullStudentById(long studentId);
+    Optional<Student> getFullStudentById(long studentId);
 
     List<SimpleStudent> getAllStudents();
 
-    SimpleStudent getStudentById(long studentId);
+    Optional<SimpleStudent> getStudentById(long studentId);
 
-    <T> SimpleStudent findStudentBy(T value, Function<Student, T> valueAccessor);
+    List<String> getAllPhoneNumbers();
 
 }
